@@ -1,0 +1,72 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div class="container">
+    <form >
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <div class="container">
+        <form>
+        <div class="form-group">
+            <p>
+            <label>Punto de referencia</label> <br>
+            <input id="reference" class="form-control" type="text" placeholder="Plaza de armas..." required><br>
+            </p>
+            <p>
+            <label>Descripción</label> <br>
+            <input id="description" class="form-control" type="text" placeholder="Frente al supermercado..." required><br>
+            </p>
+            <p>
+            <label>Hora aproximada</label> <br>
+            <input id="arrivalTime" class="form-control" type="time" placeholder="2:15" required><br>
+            </p>
+            <button id="add" class="btn btn-success" type="button">Añadir punto de referencia</button>
+        </div>
+        </form>
+        <div>
+            <p>Puntos de referencia registrados:
+            <div id="added"></div>
+            </p>
+            <table id="referenceTable" class="table">
+                <tr>
+                    <th scope="col">Punto de referencia</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Hora aproximada</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+            </table>
+        </div>
+        <script>
+        $(document).ready(function() {
+            //obtencion de valores de inputs
+            $('#add').click(function() {
+            var reference = document.getElementById("reference").value;
+            var description = document.getElementById("description").value;
+            var arrivalTime = document.getElementById("arrivalTime").value;
+            var i = 1; //contador para asignar id al boton que borrara la fila
+            var fila = '<tr id="row' + i + '"><td>' + reference + '</td><td>' + description + '</td><td>' + arrivalTime + '</td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">Quitar</button></td></tr>'; //esto seria lo que contendria la fila
+
+            i++;
+
+            $('#referenceTable tr:first').after(fila);
+                $("#added").text(""); //esta instruccion limpia el div added para que no se vayan acumulando
+                var nFilas = $("#referenceTable tr").length;
+                $("#added").append(nFilas - 1);
+                //se resta 1 para no contar el hedder de las filas
+                document.getElementById("reference").value ="";
+                document.getElementById("description").value = "";
+                document.getElementById("arrivalTime").value = "";
+                document.getElementById("reference").focus();
+            });
+            $(document).on('click', '.btn_remove', function() {
+            var button_id = $(this).attr("id");
+                //cuando da click se obtiene el id del boton
+                $('#row' + button_id + '').remove(); //borra la fila
+                //limpia para que vuelva a contar las filas de la tabla
+                $("#added").text("");
+                var nFilas = $("#referenceTable tr").length;
+                $("#added").append(nFilas - 1);
+            });
+            });
+            </script>
+    </form>
+</div>

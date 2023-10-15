@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <title>CARPOOL CARDENAL</title>
+    <link rel="icon" href="https://i.ibb.co/9Gy1hPQ/CARPOOL.png">
+    <style>
+        body {
+            background-image: url('https://www.upq.mx/media/slider/MASCOTAS.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .wrapper {
+            max-width: 350px;
+            min-height: 500px;
+            margin: 80px auto;
+            padding: 40px 30px 30px 30px;
+            background-color: rgba(236, 240, 243, 0.9);
+            border-radius: 15px;
+            box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+        }
+
+        .logo {
+            width: 80px;
+            margin: auto;
+        }
+
+        .logo-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .wrapper .name {
+            font-size: 2rem;
+            color: rgba(255, 0, 0, 0.7);
+        }
+
+        .wrapper .form-field input {
+            width: 100%;
+            display: block;
+            border: none;
+            outline: none;
+            background: none;
+            font-size: 1.2rem;
+            color: #666;
+            padding: 10px 15px 10px 10px;
+        }
+
+        .wrapper .form-field {
+            padding-left: 10px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+        }
+
+        .wrapper .form-field .fas {
+            color: #555;
+        }
+
+        .wrapper .btn {
+            box-shadow: none;
+            width: 100%;
+            height: 40px;
+            background-color: rgba(204, 0, 0, 0.7);
+            color: #fff;
+            border-radius: 25px;
+            box-shadow: 3px 3px 3px #b1b1b1, -3px -3px 3px #fff;
+            letter-spacing: 1.3px;
+        }
+
+        .wrapper .btn:hover {
+            background-color: rgba(255, 0, 0, 0.8);
+        }
+
+        .wrapper a {
+            text-decoration: none;
+            font-size: 0.8rem;
+            color: rgba(204, 0, 0, 0.7);
+        }
+
+        .wrapper a:hover {
+            color: rgba(255, 0, 0, 0.8);
+        }
+
+        @media (max-width: 380px) {
+            .wrapper {
+                margin: 30px 20px;
+                padding: 40px 15px 15px 15px;
+            }
+        }
+        .modal-content, .btn {
+            border-color: transparent !important;
+            border: none;
+    box-shadow: none;
+        }
+
+        /* Borde de los botones del modal */
+        .btn {
+            border-color: rgba(204, 0, 0, 0.7);
+        }
+
+        /* Increase the width of the modal */
+        .modal-dialog {
+            max-width: 600px; /* Adjust the width as needed */
+        }
+       
+    </style>
+</head>
+
+<body>
+    {% with mensajes= get_flashed_messages()  %}
+    {% if mensajes %}
+        {% for msj in mensajes %}
+            <script>
+                Swal.fire(
+                '',
+                '{{ msj }}',
+                'info')
+            </script>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    
+        <div class="bg-image d-flex align-items-center justify-content-center">
+        <div class="container text-center">
+            <div class="wrapper">
+                <div class="logo d-flex justify-content-center align-items-center ">
+                    <img src="https://i.ibb.co/9Gy1hPQ/CARPOOL.png" 
+                        alt="V-UPQ Logo" class="logo-image" style="max-width: 200px;"> <!-- Adjust the max-width value -->
+                </div>
+
+                <!-- <div class="mt-2 mb-2">
+                    <h1 class="display-5 text-center text-DARK">CARPOOL CARDENAL</h1>
+                </div> -->
+                            <form action="/login" method="POST">
+                                <div class="row g-2 py-2">
+                                    <div class="col-md-12 form-floating">
+                                        <input type="text" class="form-control" id="inputMatricula" name="txtMatricula" placeholder="Matrícula" required>
+                                        <label for="inputMatricula">Usuario</label>
+                                    </div>
+                                </div>  
+                                <div class="row g-2 py-2">
+                                    <div class="col-md-12 form-floating">
+                                        <input type="password" class="form-control" id="inputPassword" name="txtPassword" placeholder="Contraseña" required>
+                                        <label for="inputMatricula">Contraseña</label>
+                                    </div>
+                                </div>  
+                                <div class="col-md  py-2">
+                                    <div class="form-floating">
+                                      <select class="form-select" id="floatingSelectGrid" id="inputTipo" name="txtTipo" required>
+                                        <option value=""></option>
+                                        <option value="1">Conductor</option>
+                                        <option value="2">Pasajero</option>
+                                        <option value="3">Administrador</option>
+                                      </select>
+                                      <label for="floatingSelectGrid">Ingresar como: </label>
+                                    </div>
+                                  </div>
+                                    
+                                    <div class="row g-3">
+                                </div><!--Cierre row-->
+                                <div class="row g-3 mt-2">
+                                    <div class="col-md-12">
+                                        <div class="col-md-12 d-grid gap-2 d-md-block">
+                                            <!--Iniciar sesion-->
+                                            <button type="submit" class="btn btn-primary p-2 g-col-6"> Iniciar Sesión</button>
+                                            <br><br>
+                                        </div>
+                                    </div><!--Cierre col-->
+                                </div><!--Cierre row-->
+                            </form>   
+                        </div>
+                </div><!--Cierre Card-->
+            </div><!--Cierre col-->
+        </div><!--Cierre row-->
+    </div><!--Cierre container-->
+      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+
+</html>

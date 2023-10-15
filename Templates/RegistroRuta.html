@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="icon" href="https://i.ibb.co/9Gy1hPQ/CARPOOL.png">
+        <link rel="stylesheet" href="static/styles.css">
+        <script src="static/script.js" defer></script>
+        <script src="static/Script1.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.20.0/font/bootstrap-icons.css" rel="stylesheet">
+
+        
+        <title>Registro de Ruta </title>
+        <style>
+                        /* ESTILOS DEL BODY */
+            body {
+                background-image: url('https://www.liderempresarial.com/wp-content/uploads/2022/05/UPQ.jpg');
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+                margin: 0;
+                padding: 0;
+                font-family: 'Poppins', sans-serif;
+                justify-content: space-between;
+            }
+
+            .modal-content .modal-image {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            /* ESTILOS DEL FOOTER */
+            .footer {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: #0a4275;
+                color: white;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            .footer-container {
+                background-color: #0a4275;
+                /* Cambio de color */
+                color: white;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            footer {
+                margin: 0;
+                background: transparent;
+            }
+
+            /* ESTILOS DEL NAVBAR */
+            .navbar-light .navbar-nav .nav-link:hover {
+                background-color: #0a4275;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+                border-radius: 6px;
+            }
+
+            .rating-box {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                /* Centra horizontalmente */
+                justify-content: center;
+                /* Centra verticalmente */
+                background: #fff;
+                padding: 25px 50px 35px;
+                border-radius: 8px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            }
+
+            .rating-box header {
+                font-size: 22px;
+                color: #dadada;
+                font-weight: 500;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .rating-box .stars {
+                display: flex;
+                align-items: center;
+                gap: 25px;
+            }
+
+            .stars i {
+                color: #e6e6e6;
+                font-size: 35px;
+                cursor: pointer;
+                transition: color 0.2s ease;
+            }
+
+            .stars i.active {
+                color: #ff9c1a;
+            }
+        </style>
+    
+    </head>
+    <body><!-- INICIO BODY -->
+        <!-- INICIO NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-light navbar-scroll" style="background-color: #072846;">
+            <!-- INICIO CONTAINER -->
+            <div class="container-fluid">
+                <!-- INICIO BUTTON -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button><!-- FIN BUTTON -->
+
+                <!-- Navbar brand -->
+                <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                    <img src="https://calareo.ca/wp-content/uploads/2020/10/UPQ-logo.png" height="65">
+                </a>
+                <!-- ELEMENTOS A LA IZQUIERDA "HOME" -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="/conductor">Home</a>
+                    </li>
+                </ul><!-- FIN ELEMENTOS A LA IZQUIERDA -->
+                <!-- ELEMENTOS A LA DERECHA -->
+                <div class="ml-auto">
+                    <!-- Avatar -->
+                    <div class="dropdown">
+                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://i.ibb.co/jvrQmyM/CARPOOL-CARDENAL.png" class="rounded-circle" height="60" alt="Avatar Image" loading="lazy"/>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                            <li>
+                                <a id="perfilLink" class="dropdown-item" href="/conductor/perfil">Perfil</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- FIN CONTAINER -->
+        </nav><!-- FIN NAVBAR -->
+
+        <div class="container p-4">
+            <div class="card">
+                <div class="mt-5">
+                    <h4 class="display-4 text-center text-dark">Registro de Ruta</h4>
+                    <hr>
+                </div>
+                <div class="card-body">
+                    <!-- Card para los campos de entrada -->
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="/cargarparada/{{id}}" method="POST">
+                                <div class="form-group">
+                                    <label for="reference">Punto de referencia</label>
+                                    <input id="reference" class="form-control" type="text" placeholder="Plaza de armas..." name="txtreferencia" required><br>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Descripción</label>
+                                    <input id="description" class="form-control" type="text" placeholder="Frente al supermercado..." name="txtdescripcion" required><br>
+                                </div>
+                                <div class="form-group">
+                                    <label for="arrivalTime">Hora aproximada</label>
+                                    <input id="arrivalTime" class="form-control" type="time" placeholder="2:15" name="txthora" required><br>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Descripción de la Ruta Completa</label>
+                                    <input id="description" class="form-control" type="text" placeholder="Ingresa la descripción completa de tu ruta" value="{{desc.1}}" name="txtdesgral" required><br>
+                                </div>
+                                <button class="btn btn-outline-warning" type="submit"><i class="bi bi-plus-circle"></i> Añadir punto de referencia</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Fin del Card para los campos de entrada -->
+        
+                    <div>
+                        <p class="p-4">Puntos de referencia registrados:</p>
+                        <div id="added"></div>
+                    </div>
+                    <table id="referenceTable" class="table">
+                        <tr>
+                            <th scope="col">Punto de referencia</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Hora aproximada</th>
+                            <th scope="col">Ruta Completa</th>
+                            <th scope="col">Eliminar</th>
+                        </tr>
+                        {%for parada in paradas%}
+                        <tr>
+                            <td>{{parada.0}}</td>
+                            <td>{{parada.1}}</td>
+                            <td>{{parada.2}}</td>
+                            <td>{{desc.0}}</td>
+                            <td></td>
+                        </tr>
+                        {%endfor%}
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+
+    <script>
+        $(document).ready(function() {
+            var i = 1; // contador para asignar ID único a las filas
+        
+            $('#add').click(function() {
+                var reference = $('#reference').val();
+                var description = $('#description').val();
+                var arrivalTime = $('#arrivalTime').val();
+                var description1 = $('#description1').val();
+                
+                if (reference && description && arrivalTime) {
+                    var fila = '<tr id="row' + i + '"><td>' + reference + '</td><td>' + description + '</td><td>' + arrivalTime + '</td><td>' + description1 +'</td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">Quitar</button></td></tr>' ;
+                    
+                    $('#referenceTable tr:first').after(fila);
+                    
+                    // Actualizar el contador y limpiar los campos
+                    i++;
+                    $('#reference').val("");
+                    $('#description').val("");
+                    $('#arrivalTime').val("");
+                    $('#description1').val("");
+                    $('#reference').focus();
+                } else {
+                    alert("Por favor, complete todos los campos.");
+                }
+            });
+        
+            $(document).on('click', '.btn_remove', function() {
+                var button_id = $(this).attr("id");
+                $('#row' + button_id).remove();
+                i--;
+            });
+        });
+        </script>
+        <!-- INICIO FOOTER -->
+        <footer class="text-center text-white" style="background-color: #0a4275;">
+            <div class="container p-4 pb-0"><!-- INICIO CONTAINER -->
+                <section class="mb-4"><!-- INICIO SECTION -->
+                <!-- Facebook -->
+                <a class="btn btn-outline-light btn-floating m-1" href="https://es-la.facebook.com/UPQoficial/" role="button"><i class="fab fa-facebook-f"></i></a>
+
+                <!-- Twitter -->
+                <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/UPQoficial" role="button"><i class="fab fa-twitter"></i></a>
+
+                <!-- Google -->
+                <a class="btn btn-outline-light btn-floating m-1" href="https://www.upq.mx/" role="button"><i class="fab fa-google"></i></a>
+
+                <!-- Instagram -->
+                <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/soyupq/" role="button"><i class="fab fa-instagram"></i></a>
+                </section><!-- FIN SECTION -->
+            </div><!-- FIN CONTAINER -->
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2020 Copyright:
+            <a class="text-white" href="/">CARPOOL CARDENAL</a>
+            </div><!-- Copyright -->
+        </footer><!-- FIN FOOTER -->
+
+        <!-- INICIO SCRIPTS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="sweetalert2.all.min.js"></script>
+        <!-- FIN SCRIPTS -->
+        
+    </body><!-- FIN BODY -->
+</html>
