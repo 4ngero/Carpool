@@ -2,6 +2,10 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_mysqldb import MySQL
 
+#Para subir archivo tipo foto al servidor
+from werkzeug.utils import secure_filename 
+import os
+
 #inicialización del APP
 app= Flask(__name__)
 #conexion
@@ -141,7 +145,7 @@ def perfilconductor():
     telefono=tel[0]
     return render_template('Perfil2.html',datos=datos_personales,nombre=nombre,apellidos=temp,autos=autos,telefono=telefono)
 
-#insertar auto
+#insertar telefono
 @app.route('/actualizar_telefonoc', methods=['POST'])
 def actualizar_telefonoc():
     VTelefono=request.form['txtTelefono']
@@ -175,8 +179,96 @@ def ingresar_auto():
         CC.execute("insert into relacion_autos(id_conductor,id_auto) values(%s,%s);",(session["Conductor"],autoid[0],))
         CC.execute("update conductor set primer_ingreso_flag=1")
         mysql.connection.commit()
-    return redirect('/conductor/perfil')
+        """
+        CC.execute("SELECT matricula FROM vw_inscripciones where matricula = "+session["Matricula"]+";")
+        
+        matriculaUtil = CC.fetchone()
+        matriculaUtil = CC.fetchone()[1].replace("'", '').replace('"', '').replace('(', '').replace(')', '').replace(',', '')
+        print(matriculaUtil)
+        """
+        CC.execute("SELECT matricula FROM vw_inscripciones WHERE matricula = " + str(session["Matricula"]) + ";")
+        matriculaUtil = CC.fetchone()
 
+        if matriculaUtil is not None:
+            matriculaUtil = matriculaUtil[0].replace("'", '').replace('"', '').replace('(', '').replace(')', '').replace(',', '')
+
+        tarjeta_circula = request.files['tarjeta_circula']
+        credencial_UPQ = request.files['credencial_UPQ']
+        credencial_INE = request.files['credencial_INE']
+        poliza = request.files['poliza']
+        
+        if tarjeta_circula:
+            basepath = os.path.dirname(__file__)
+            filename = secure_filename(tarjeta_circula.filename)
+            extension  = os.path.splitext(filename)[1]
+            nombreFile = str(matriculaUtil) +"_"+ str(VPlaca) + "_Tarjeta_Circulacion" + extension
+            
+            upload_path = os.path.join(basepath, 'static/archivos', nombreFile)
+            tarjeta_circula.save(upload_path)
+            
+        if credencial_UPQ:
+            basepath = os.path.dirname(__file__)
+            filename = secure_filename(credencial_UPQ.filename)
+            extension  = os.path.splitext(filename)[1]
+            nombreFile = str(matriculaUtil) + "_Credencial_UPQ" + extension
+            
+            upload_path = os.path.join(basepath, 'static/archivos', nombreFile)
+            credencial_UPQ.save(upload_path)
+        
+        if credencial_INE:
+            basepath = os.path.dirname(__file__)
+            filename = secure_filename(credencial_INE.filename)
+            extension  = os.path.splitext(filename)[1]
+            nombreFile = str(matriculaUtil) + "_Credencial_INE" + extension
+            
+            upload_path = os.path.join(basepath, 'static/archivos', nombreFile)
+            credencial_INE.save(upload_path)
+            
+        if poliza:
+            basepath = os.path.dirname(__file__)
+            filename = secure_filename(poliza.filename)
+            extension  = os.path.splitext(filename)[1]
+            nombreFile = str(matriculaUtil) +"_"+ str(VPlaca) + "_Poliza" + extension
+            
+            upload_path = os.path.join(basepath, 'static/archivos', nombreFile)
+            poliza.save(upload_path)
+        
+        
+    return redirect('/conductor/perfil')
+"""
+#insertar documentos
+@app.route('/insertar_documentos', methods=['POST', 'GET'])
+def insertarDocumentos():
+    if request.method == 'POST':
+        CC=mysql.connection.cursor()
+        CC.execute("SELECT * FROM vw_inscripciones where matricula = '"+session["Matricula"]+"';")
+        
+        matriculaUtil = CC.fetchall()
+        tarjeta_circula = request.files['tarjeta_circula']
+        credencial_UPQ = request.files['credencial_UPQ']
+        credencial_INE = request.files['credencial_INE']
+        poliza = request.files['poliza']
+        
+        if tarjeta_circula:
+            basepath = os.path.dirname(__file__)
+            filename = secure_filename(tarjeta_circula.filename)
+            extension  = os.path.splitext(filename)[1]
+            nombreFile = matriculaUtil + "tarjeta_circulacion" + extension
+            
+            upload_path = os.path.join(basepath, 'static/archivos', nombreFile)
+            tarjeta_circula.save(upload_path)
+"""
+#Visualizar documentos del auto
+@app.route('/documentos_auto')
+def view_documento():
+    CC = mysql.connection.cursor()
+    CC.execute("SELECT matricula FROM vw_inscripciones WHERE matricula = " + str(session["Matricula"]) + ";")
+    matriculaUtils = CC.fetchone()
+    CC.execute("select placa from relacion_autos as ra inner join autos as a on ra.id_auto=a.id_auto where id_conductor=%s",(session["Conductor"],))
+    placaUtils = CC.fetchone()
+    return render_template("Perfil2.html", placaUtils=placaUtils, matriculaUtils=matriculaUtils)
+
+           
 #cambio de contraseña conductor
 @app.route('/cambiar_contraseña', methods=['POST'])
 def cambiar_contraseña():

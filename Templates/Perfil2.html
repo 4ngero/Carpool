@@ -258,8 +258,11 @@
                     <div class="modal-body">
                         <!-- Aquí puedes listar y mostrar los archivos PDF subidos -->
                         <ul>
-                            <li><a href="ruta_al_archivo1.pdf" target="_blank">Archivo PDF 1</a></li>
-                            <li><a href="ruta_al_archivo2.pdf" target="_blank">Archivo PDF 2</a></li>
+                                <li><a href="/static/archivos/">INE</a></li>
+                                <li><a href="ruta_al_archivo2.pdf" target="_blank">Credencial UPQ</a></li>                        
+                                <li><a href="">Poliza de seguro</a></li>
+                                <li><a href="/static/archivos/121039875NW-8004_Tarjeta_Circulacion.pdf" download>Tarjeta de circulación</a></li>
+
                             <!-- Agrega más archivos según sea necesario -->
                         </ul>
                     </div>
@@ -310,7 +313,7 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Auto</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/ingresar_auto" method="POST" enctype="multipart/form-data">
+                <form action="/ingresar_auto" method="POST" autocomplete="off" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -339,28 +342,28 @@
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="formFile" class="form-label">Tarjeta de circulación</label>
-                                    <input class="form-control" type="file" id="formFile" name="imgTarjeta">
+                                    <label for="validatedCustomFile" class="form-label">Tarjeta de circulación</label>
+                                    <input class="form-control" type="file" id="formFile" name="tarjeta_circula" required>
                                   </div>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label for="formFile" class="form-label">Credencial UPQ (Vigente)</label>
-                                    <input class="form-control" type="file" id="formFile" name="imgCredencial">
+                                <label for="validatedCustomFile" class="form-label">Credencial UPQ (Vigente)</label>
+                                    <input class="form-control" type="file" id="formFile" name="credencial_UPQ" required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="formFile" class="form-label">INE</label>
-                                    <input class="form-control" type="file" id="formFile" name="imgINE">
+                                    <label for="validatedCustomFile" class="form-label">INE</label>
+                                    <input class="form-control" type="file" id="formFile" name="credencial_INE" required>
                                   </div>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="col-md-6">
                             <div class="row g-3">
                                 <div class="mb-3">
-                                    <label for="formFile" class="form-label">Póliza de Seguro (Vigente)</label>
-                                    <input class="form-control" type="file" id="formFile" name="imgPoliza">
+                                    <label for="validateCustomFile" class="form-label">Póliza de Seguro (Vigente)</label>
+                                    <input class="form-control" type="file" id="formFile" name="poliza" required>
                                 </div>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
