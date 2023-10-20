@@ -196,6 +196,7 @@ def ingresar_auto():
         credencial_UPQ = request.files['credencial_UPQ']
         credencial_INE = request.files['credencial_INE']
         poliza = request.files['poliza']
+        vehiclePhoto = request.files['vehiclePhoto']
         
         if tarjeta_circula:
             basepath = os.path.dirname(__file__)
@@ -232,6 +233,15 @@ def ingresar_auto():
             
             upload_path = os.path.join(basepath, 'static/archivos', nombreFile)
             poliza.save(upload_path)
+        
+        if vehiclePhoto:
+            basepath = os.path.dirname(__file__)
+            filename = secure_filename(vehiclePhoto.filename)
+            extension  = os.path.splitext(filename)[1]
+            nombreFile = str(matriculaUtil) +"_"+ str(VPlaca) + "_Vehiculo" + extension
+            
+            upload_path = os.path.join(basepath, 'static/archivos', nombreFile)
+            vehiclePhoto.save(upload_path)
         
         
     return redirect('/conductor/perfil')
