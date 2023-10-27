@@ -6,15 +6,19 @@ from flask_mysqldb import MySQL
 from werkzeug.utils import secure_filename 
 import os
 
+### customize>>>
 #inicialización del APP
-app= Flask(__name__)
+app= Flask(__name__,  template_folder='Templates')
 #conexion
 app.config['MYSQL_HOST']='localhost'
+#LOCAL app.config['MYSQL_USER']='web-carpool'
 app.config['MYSQL_USER']='root'
+#lOCAL app.config['MYSQL_PASSWORD']='wS314762UU'
 app.config['MYSQL_PASSWORD']='cz757002'
 app.config['MYSQL_DB']='carpool'
 app.secret_key= 'mysecretkey'
 mysql= MySQL(app)
+### <<<customize
 
 @app.route('/')
 def index():
@@ -98,9 +102,9 @@ def conductor():
     if Vid[2]==0:
         return redirect("/conductor/perfil")
     else:
-        CC.execute("select * from Ruta where id_conductor=%s",(session["Conductor"],))
+        CC.execute("select * from ruta where id_conductor=%s",(session["Conductor"],))
         rutas=CC.fetchall()
-        CC.execute("select id_ruta from Ruta where id_conductor=%s",(session["Conductor"],))
+        CC.execute("select id_ruta from ruta where id_conductor=%s",(session["Conductor"],))
         Vnone=str(CC.fetchone())
         CC.execute("select punto_referencia,descripcion,hora,p.id_ruta from paradas as p inner join ruta as r on p.id_ruta=r.id_ruta where r.id_conductor=%s",(session["Conductor"],))
         paradas=CC.fetchall()
@@ -109,7 +113,7 @@ def conductor():
         id_pasajeros=[]
         for a in aux:
             id_pasajeros.append(int(a[0]))
-        CC.execute("select matricula from Pasajero where id_pasajero in (%s)",(str(id_pasajeros),))
+        CC.execute("select matricula from pasajero where id_pasajero in (%s)",(str(id_pasajeros),))
         aux=CC.fetchall()
         matriculas=[]
         for a in aux:
@@ -143,7 +147,37 @@ def perfilconductor():
     CC.execute("select telefono from conductor where id_conductor=%s",(session["Conductor"],))
     tel=CC.fetchone()
     telefono=tel[0]
-    return render_template('Perfil2.html',datos=datos_personales,nombre=nombre,apellidos=temp,autos=autos,telefono=telefono)
+    
+    CC.execute("SELECT matricula FROM vw_inscripciones WHERE matricula = " + str(session["Matricula"]) + ";")
+    
+    #if matriculaUtils is not None:
+    #   matriculaUtils = matriculaUtils[0].replace("'", '').replace('"', '').replace('(', '').replace(')', '').replace(',', '')
+        
+    matriculaUtils = []
+    for row in CC.fetchall():
+        matriculaUtils.append(row)
+    #matriculaUtils = CC.fetchone()
+    
+    INELinks = []
+    for matriculaUtil in matriculaUtils:
+        matricula = matriculaUtil[0]
+        INELink_completo = str(matricula) + "_Credencial_INE.pdf"
+        INELinks.append(INELink_completo)
+    
+    #CC = mysql.connection.cursor()
+    #CC.execute("SELECT placa from autos where placa = "+ str(session["Placa"]) + ";")
+    #placaUtils = CC.fetchone()
+
+    
+    #if placaUtils is not None:
+    #    placaUtils = placaUtils[0].replace("'", '').replace('"', '').replace('(', '').replace(')', '').replace(',', '')
+        
+    #polizaLink = "static/archivos/" + str(matriculaUtils) + "_" + str(placaUtils) + "_ poliza.pdf" 
+     
+    #polizaLink = "static"   
+    
+    #print(polizaLink)    
+    return render_template('Perfil2.html',datos=datos_personales,nombre=nombre,apellidos=temp,autos=autos,telefono=telefono, INELinks=INELinks)
 
 #insertar telefono
 @app.route('/actualizar_telefonoc', methods=['POST'])
@@ -186,7 +220,7 @@ def ingresar_auto():
         matriculaUtil = CC.fetchone()[1].replace("'", '').replace('"', '').replace('(', '').replace(')', '').replace(',', '')
         print(matriculaUtil)
         """
-        CC.execute("SELECT matricula FROM vw_inscripciones WHERE matricula = " + str(session["Matricula"]) + ";")
+        CC.execute("select matricula from vw_inscripciones where matricula = " + str(session["Matricula"]) + ";")
         matriculaUtil = CC.fetchone()
 
         if matriculaUtil is not None:
@@ -269,14 +303,30 @@ def insertarDocumentos():
             tarjeta_circula.save(upload_path)
 """
 #Visualizar documentos del auto
+
 @app.route('/documentos_auto')
 def view_documento():
     CC = mysql.connection.cursor()
     CC.execute("SELECT matricula FROM vw_inscripciones WHERE matricula = " + str(session["Matricula"]) + ";")
     matriculaUtils = CC.fetchone()
-    CC.execute("select placa from relacion_autos as ra inner join autos as a on ra.id_auto=a.id_auto where id_conductor=%s",(session["Conductor"],))
+    
+    CC = mysql.connection.cursor()
+    CC.execute("SELECT placa from autos where placa = "+ str(session["placa"]) + ";")
     placaUtils = CC.fetchone()
-    return render_template("Perfil2.html", placaUtils=placaUtils, matriculaUtils=matriculaUtils)
+
+    if matriculaUtils is not None:
+        matriculaUtils = matriculaUtils[0].replace("'", '').replace('"', '').replace('(', '').replace(')', '').replace(',', '')
+    
+    if placaUtils is not None:
+        placaUtils = placaUtils[0].replace("'", '').replace('"', '').replace('(', '').replace(')', '').replace(',', '')
+        
+    #polizaLink = "static/archivos/" + str(matriculaUtils) + "_" + str(placaUtils) + "_ poliza.pdf" 
+     
+    polizaLink = "static"   
+    
+    print(polizaLink)    
+        
+    return render_template("Perfil2.html", poliza=polizaLink)
 
            
 #cambio de contraseña conductor
@@ -298,8 +348,8 @@ def registro_ruta():
         Vruta=request.form['txtRuta']
         Vturno=request.form['txtTurno']
         CC= mysql.connection.cursor()
-        CC.execute("insert into Ruta(nombre_ruta,id_conductor,tipo_ruta) values (%s,%s,%s)",(Vruta,session["Conductor"],Vturno))
-        CC.execute("select id_ruta from Ruta where nombre_ruta=%s and id_conductor=%s and tipo_ruta=%s",(Vruta,session["Conductor"],Vturno))
+        CC.execute("insert into ruta(nombre_ruta,id_conductor,tipo_ruta) values (%s,%s,%s)",(Vruta,session["Conductor"],Vturno))
+        CC.execute("select id_ruta from ruta where nombre_ruta=%s and id_conductor=%s and tipo_ruta=%s",(Vruta,session["Conductor"],Vturno))
         id_ruta=CC.fetchone()
         id=id_ruta[0]
         mysql.connection.commit()
@@ -311,10 +361,10 @@ def registrar_parada(id):
     if not session.get("Matricula"):
         return redirect("/login")
     CC= mysql.connection.cursor()
-    CC.execute("select nombre_ruta, descripcion_completa from Ruta where id_ruta=%s",(id,))
+    CC.execute("select nombre_ruta, descripcion_completa from ruta where id_ruta=%s",(id,))
     desc=CC.fetchone()
     id2=id
-    CC.execute("select punto_referencia, descripcion, hora from Paradas where id_ruta=%s",(id,))
+    CC.execute("select punto_referencia, descripcion, hora from paradas where id_ruta=%s",(id,))
     paradas=CC.fetchall()
     return render_template('RegistroRuta.html',desc=desc,id=id2,paradas=paradas)
 
@@ -343,7 +393,7 @@ def pasajero():
     if Vnone=='None':
         return redirect("/pasajero/ruta")
     else:
-        CC.execute("select telefono from Pasajero where id_pasajero=%s",(session["Pasajero"],))
+        CC.execute("select telefono from pasajero where id_pasajero=%s",(session["Pasajero"],))
         telefono=CC.fetchone()
         #listado de conductores
         CC.execute("select id_ruta from relacion_ruta where id_pasajero=%s",(session["Pasajero"],))
@@ -351,7 +401,7 @@ def pasajero():
         id_rutas=[]
         for a in aux:
             id_rutas.append(a[0])
-        CC.execute("select id_conductor from Ruta where id_ruta in (%s)",(str(id_rutas),))
+        CC.execute("select id_conductor from ruta where id_ruta in (%s)",(str(id_rutas),))
         id_conductores=CC.fetchall()
         aux=CC.fetchall()
         id_rutas=[]
@@ -437,6 +487,7 @@ def admin():
             return redirect("/login")
     return render_template('Administrador.html')
 
+### customize
 #ejecución del servidor en el puerto 5000
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)      
+    app.run(host='0.0.0.0',port=5000, debug=True)      

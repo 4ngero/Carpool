@@ -256,12 +256,16 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <!-- Aquí puedes listar y mostrar los archivos PDF subidos -->
+                        <!-- Mostrar los archivos subidos -->
                         <ul>
-                                <li><a href="/static/archivos/">INE</a></li>
-                                <li><a href="ruta_al_archivo2.pdf" target="_blank">Credencial UPQ</a></li>                        
-                                <li><a href="">Poliza de seguro</a></li>
-                                <li><a href="/static/archivos/121039875NW-8004_Tarjeta_Circulacion.pdf" download>Tarjeta de circulación</a></li>
+                                {% for INELink in INElinks %}
+                                <!--<li><a href="/static/archivos/121014865_Credencial_INE.pdf" download>INE</a></li>-->
+                                {{ INELink }}
+                                {% endfor %}
+                                <li><a href="/static/archivos/121014865_Credencial_UPQ.pdf" download>Credencial UPQ</a></li>                        
+                                <li><a href="{{ polizaLink }}" download>Poliza de seguro</a></li>
+                                <li>link {{ poliza }}</li>
+                                <li><a href="/static/archivos/121014865_ABC-99_Tarjeta_Circulacion.pdf" download>Tarjeta de circulación</a></li>
 
                             <!-- Agrega más archivos según sea necesario -->
                         </ul>
