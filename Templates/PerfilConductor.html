@@ -16,7 +16,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.20.0/font/bootstrap-icons.css" rel="stylesheet">
 
         
-        <title>CARPOOL</title>
+        <title>Perfil Conductor</title>
         <style>
                         /* ESTILOS DEL BODY */
             body {
@@ -147,7 +147,267 @@
             </div><!-- FIN CONTAINER -->
         </nav><!-- FIN NAVBAR -->
 
-       
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 py-5">
+                    <div class="col-md-12">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item rounded shadow">
+                                <div class="modal-body">
+                                    <!-- Contenido del perfil -->
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <figure class="figure text-center col-md-12 my-3">
+                                                <img src="https://i.ibb.co/v3w1HS0/Pasajera1.webp" alt="Foto del pasajero" width="150px">
+                                                <figcaption class="figure-caption">
+                                                    <h2 class="text-center">
+                                                        {%for i in nombre%}
+                                                        {{i}}
+                                                        {%endfor%}</h2>
+                                                    <h2 class="text-center">
+                                                        {%for i in apellidos%}
+                                                        {{i}}
+                                                        {%endfor%}
+                                                    </h2S>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+                                        <li class="list-group-item">
+                                            Matrícula: {{datos.0}}
+                                        </li>
+                                        <li class="list-group-item">
+                                            Carrera: {{datos.3}}
+                                        </li>
+                                        <li class="list-group-item">
+                                            NSS: {{datos.7}}
+                                        </li>
+                                        <li class="list-group-item">
+                                            Teléfono: {{telefono}}
+                                        </li>
+                                        <li class="list-group-item">
+                                            Correo Institucional: {{datos.5}}
+                                        </li>
+                                        <li class="list-group-item">
+                                            Sexo: {{datos.4}}
+                                        </li>
+                                    </ul>
+                                    <!-- Fin del contenido del perfil -->
+                                </div> 
+                                <div class="row">
+                                    <!-- Contenedor de botones -->
+                                    <div class="col p-3 d-flex align-items-center">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-outline-primary mb-2 me-2 justify-content-md-center mx-4" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                            <i class="bi bi-person-add"></i> Agregar Auto
+                                        </button>
+                                        <button type="button" class="btn btn-outline-warning mb-2 me-2 justify-content-md-center" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                                            <i class="bi bi-file-lock"></i> Cambiar Contraseña
+                                        </button>
+                                    </div>
+                                    <div class="col p-3 me-4 d-flex flex-column align-items-center">
+                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#telefonoModal"><i class="bi bi-phone"></i> Actualizar Teléfono</button>
+                                    </div>
+                                </div> 
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Agregar un espacio en blanco en la parte derecha -->
+                <div class="col-md-2"></div>
+        
+                <div class="col-md-6 py-5">
+                    <div class="card card-body">
+                        <h1 class="text-center">
+                            Autos Registrados
+                            <hr> <!-- CREA UNA LÍNEA DE SEPARACIÓN -->
+                        </h1>
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                            {%for auto in autos%}
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="https://th.bing.com/th/id/OIP.3coiyto2KN6KK7zUtyDotAHaEK?pid=ImgDet&rs=1" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                      <h5 class="card-title">{{auto.2}} {{auto.1}}</h5>
+                                      Placa:   {{auto.0}}
+                                      Color:   {{auto.3}}
+                                      Lugares: {{auto.4}}
+                                      <!-- Botón para ver los archivos PDF subidos -->
+                                        <button type="button" class="btn btn-outline-warning mt-3" data-bs-toggle="modal" data-bs-target="#pdfModal">
+                                              Ver Documentación
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+          <!-- Modal para mostrar archivos PDF -->
+          <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="pdfModalLabel">Archivos PDF Subidos</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Aquí puedes listar y mostrar los archivos PDF subidos -->
+                        <ul>
+                                <li><a href="/static/archivos/">INE</a></li>
+                                <li><a href="ruta_al_archivo2.pdf" target="_blank">Credencial UPQ</a></li>                        
+                                <li><a href="">Poliza de seguro</a></li>
+                                <li><a href="/static/archivos/121039875NW-8004_Tarjeta_Circulacion.pdf" download>Tarjeta de circulación</a></li>
+
+                            <!-- Agrega más archivos según sea necesario -->
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- FIN MODAL -->
+    
+      <!-- Modal Contraseña -->
+      <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar Contraseña</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/cambiar_contraseña" method="POST">
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-md-12">
+                                <label for="inputPassword" class="form-label">Nueva Contraseña</label>
+                                <input type="password" class="form-control" id="inputPassword" name="txtPassword" required>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-12">
+                                <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
+                                <input type="password" class="form-control" id="inputConfirmPassword" name="txtConfirmPassword" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Guardar Contraseña</button>
+                        <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+     
+     <!-- Modal Agregar Auto -->
+     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Auto</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/ingresar_auto" method="POST" autocomplete="off" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputAP" class="form-label">Marca</label>
+                                <input type="text" class="form-control" id="inputAP" name="txtMarca" required>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputAM" class="form-label">Modelo</label>
+                                <input type="text" class="form-control" id="inputAM" name="txtModelo" required>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputAP" class="form-label">Color</label>
+                                <input type="text" class="form-control" id="inputAP" name="txtColor" required>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputAM" class="form-label">Capacidad</label>
+                                <input type="text" class="form-control" id="inputAM" name="txtCapacidad" required>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputTelefono" class="form-label">No. Placa</label>
+                                <input type="text" class="form-control" id="inputTelefono" name="txtPlaca" required>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="validatedCustomFile" class="form-label">Tarjeta de circulación</label>
+                                    <input class="form-control" type="file" id="formFile" name="tarjeta_circula" required>
+                                  </div>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="validatedCustomFile" class="form-label">Credencial UPQ (Vigente)</label>
+                                    <input class="form-control" type="file" id="formFile" name="credencial_UPQ" required>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="validatedCustomFile" class="form-label">INE</label>
+                                    <input class="form-control" type="file" id="formFile" name="credencial_INE" required>
+                                  </div>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="validateCustomFile" class="form-label">Póliza de Seguro (Vigente)</label>
+                                    <input class="form-control" type="file" id="formFile" name="poliza" required>
+                                </div>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="validateCustomFile" class="form-label">Foto automovil</label>
+                                    <input class="form-control" type="file" id="formFile" name="vehiclePhoto" required>
+                                </div>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-outline-primary"><i class="bi bi-person-add"></i> Agregar Auto</button>
+                        <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+
+         <!-- MODAL DE ACTUALIZAR TELÉFONO -->
+         <div class="modal fade" id="telefonoModal" tabindex="-1" aria-labelledby="telefonoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="telefonoModalLabel">Actualizar Teléfono</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="/actualizar_telefonoc" method="POST">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="inputTelefono" class="form-label">Nuevo Número de Teléfono</label>
+                                <input type="tel" class="form-control" id="inputTelefono" name="txtTelefono" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-primary"><i class="bi bi-save"></i> Guardar Cambios</button>
+                            <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>        
+        <!-- FIN MODAL TELÉFONO -->
+        
         <!-- INICIO FOOTER -->
         <footer class="text-center text-white" style="background-color: #0a4275;">
             <div class="container p-4 pb-0"><!-- INICIO CONTAINER -->

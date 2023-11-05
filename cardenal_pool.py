@@ -11,7 +11,7 @@ app= Flask(__name__)
 #conexion
 app.config['MYSQL_HOST']='localhost'
 app.config['MYSQL_USER']='root'
-app.config['MYSQL_PASSWORD']='cz757002'
+app.config['MYSQL_PASSWORD']=''
 app.config['MYSQL_DB']='carpool'
 app.secret_key= 'mysecretkey'
 mysql= MySQL(app)
@@ -143,7 +143,7 @@ def perfilconductor():
     CC.execute("select telefono from conductor where id_conductor=%s",(session["Conductor"],))
     tel=CC.fetchone()
     telefono=tel[0]
-    return render_template('Perfil2.html',datos=datos_personales,nombre=nombre,apellidos=temp,autos=autos,telefono=telefono)
+    return render_template('PerfilConductor.html',datos=datos_personales,nombre=nombre,apellidos=temp,autos=autos,telefono=telefono)
 
 #insertar telefono
 @app.route('/actualizar_telefonoc', methods=['POST'])

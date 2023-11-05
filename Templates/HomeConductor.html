@@ -229,7 +229,7 @@
                     <div class="row">
                         <div class="card primera-card">
                             <div class="card-body text-center">
-                                <h1>Registrar nueva ruta</h1>
+                                <h1>Registrar Nueva Ruta</h1>
                                 <hr>
                                 <div>
                                     <form action="/registrar_ruta" method="POST">
@@ -304,12 +304,13 @@
                     {%endfor%}
                     {%endif%}
                 </div><!--Fin Card 1-->
-                <div class="col-md-5 ms-auto py-4">
+                <div class="col-md-5 ms-auto">
                     <div class="card segunda-card mb-4"><!--Card 2-->
                         <div class="card-body text-center mx-auto">
                             <!--Imagenes redondeadas-->
                             <div class="row">
-                                <h3>Pasajeros</h3>
+                                <h1>Pasajeros</h1>
+                                <hr>
                                 <div class="col-md-6 mb-4">
                                     <img src="https://th.bing.com/th/id/OIP.4ExqsKhmdKnjieXagyEolwHaHa?pid=ImgDet&rs=1" class="img-fluid rounded-circle" width="50%" data-toggle="modal" data-target="#myModal">
                                 </div>
@@ -349,14 +350,44 @@
                             </div>
                             <form action="/" method="POST">
                                 <div class="modal-body">
-                                    <p><strong>Nombre:</strong> Nombre</p>
-                                    <p><strong>Apellidos:</strong> Apellidos</p>
-                                    <p><strong>Matrícula:</strong> Matricula</p>
-                                    <p><strong>Carrera:</strong> Carrera</p>
-                                    <p><strong>Género:</strong> Género</p>
+                                    <p><strong>
+                                        Nombre:
+                                        </strong>
+                                        {%for i in nombre%}
+                                            {{i}}
+                                        {%endfor%} 
+                                    </p>
+                                    <p><strong>
+                                        Apellidos:
+                                        </strong>
+                                        {%for i in apellidos%}
+                                            {{i}}
+                                        {%endfor%} 
+                                    </p>
+                                    <p><strong>
+                                        Matrícula:
+                                        </strong>
+                                        {%for i in matricula%}
+                                            {{i}}
+                                        {%endfor%} 
+                                    </p>
+                                    <p><strong>
+                                        Carrera:
+                                        </strong>
+                                        {%for i in carrera%}
+                                            {{i}}
+                                        {%endfor%} 
+                                    </p>
+                                    <p><strong>
+                                        Sexo:
+                                        </strong>
+                                        {%for i in sexo %}
+                                            {{i}}
+                                        {%endfor%} 
+                                    </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i>Cerrar</button>
+                                    <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
                                 </div>
                             </form>
                         </div>
