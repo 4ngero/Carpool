@@ -156,8 +156,8 @@
                         <h5 class="modal-title" id="perfilModalLabel">Perfil de Usuario</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <!-- Contenido del perfil -->
+                    <!--<div class="modal-body">
+                        <!-- Contenido del perfil --
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <figure class="figure text-center col-md-12 my-3">
@@ -187,8 +187,8 @@
                                 Sexo: Mujer
                             </li>
                         </ul>
-                        <!-- Fin del contenido del perfil -->
-                    </div>
+                        <!-- Fin del contenido del perfil --
+                    </div>-->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#telefonoModal"><i class="bi bi-phone"></i> Actualizar Teléfono</button>                        
                         <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
@@ -226,40 +226,6 @@
             <div class="row">
                 <!-- Card 1 -->
                 <div class="col-md-6">
-                    <div class="row">
-                        <div class="card primera-card">
-                            <div class="card-body text-center">
-                                <h1>Registrar Nueva Ruta</h1>
-                                <hr>
-                                <div>
-                                    <form action="/registrar_ruta" method="POST">
-                                        <div class="modal-body">
-                                            <div class="row g-3">
-                                                <div class="col-md-12">
-                                                    <label for="inputPassword" class="form-label">Punto de Salida</label>
-                                                    <input type="text" class="form-control" id="inputTurno" name="txtRuta" required>
-                                                </div>
-                                            </div>
-                                            <div class="row g-3">
-                                                <div class="col-md-12">
-                                                    <label for="inputTurno" class="form-label">Turno de ruta</label>
-                                                    <select class="form-select" id="floatingSelectGrid" id="inputTurno" name="txtTurno" required>
-                                                        <option value="">Selecciona uno</option>
-                                                        <option value="Matutino">Matutino</option>
-                                                        <option value="Vespertino">Vespertino</option>
-                                                        <option value="Nocturno">Nocturno</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br>
-                                            <button type="submit" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Registrar Ruta</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
                     {%if 'None' in  Vnone%}
                     {%else%}
                     {%for ruta in rutas%}
@@ -305,26 +271,87 @@
                     {%endif%}
                 </div><!--Fin Card 1-->
                 <div class="col-md-5 ms-auto">
-                    <div class="card segunda-card mb-4"><!--Card 2-->
+                    <div class="row">
+                        <div class="card primera-card">
+                            <div class="card-body text-center">
+                                <h1>Registrar Nueva Ruta</h1>
+                                <hr>
+                                <div>
+                                    <form action="/registrar_ruta" method="POST">
+                                        <div class="modal-body">
+                                            <div class="row g-3">
+                                                <div class="col-md-12">
+                                                    <label for="inputPassword" class="form-label">Punto de Salida</label>
+                                                    <input type="text" class="form-control" id="inputTurno" name="txtRuta" required>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3">
+                                                <div class="col-md-12">
+                                                    <label for="inputTurno" class="form-label">Turno de Ruta</label>
+                                                    <select class="form-select" id="floatingSelectGrid" id="inputTurno" name="txtTurno" required>
+                                                        <option value="">Selecciona uno</option>
+                                                        <option value="Matutino">Matutino</option>
+                                                        <option value="Vespertino">Vespertino</option>
+                                                        <option value="Nocturno">Nocturno</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                            <button type="submit" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Registrar Ruta</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card segunda-card mb-4 mt-4" style="width: 33rem;"><!--Card 2-->
                         <div class="card-body text-center mx-auto">
                             <!--Imagenes redondeadas-->
                             <div class="row">
                                 <h1>Pasajeros</h1>
                                 <hr>
                                 <div class="col-md-6 mb-4">
-                                    <img src="https://th.bing.com/th/id/OIP.4ExqsKhmdKnjieXagyEolwHaHa?pid=ImgDet&rs=1" class="img-fluid rounded-circle" width="50%" data-toggle="modal" data-target="#myModal">
+                                    <div class="card text-center mb-3" style="width: 14rem;">
+                                        <div class="card-body">
+                                            <img src="https://th.bing.com/th/id/OIP.4ExqsKhmdKnjieXagyEolwHaHa?pid=ImgDet&rs=1" class="img-fluid rounded-circle py-2" width="50%">
+                                            <hr>
+                                            <p><strong>Nombre:</strong>{%for i in nombre%}
+                                                {{i}}
+                                                {%endfor%}</p>
+                                            <p><strong>Apellidos:</strong>{%for i in apellidos%}
+                                                {{i}}
+                                                {%endfor%}</p>
+                                            <p><strong>Matrícula:</strong> Matricula</p>
+                                            <p><strong>Carrera:</strong> Carrera</p>
+                                            <p><strong>Género:</strong> Género</p>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <img src="https://th.bing.com/th/id/OIP.4ExqsKhmdKnjieXagyEolwHaHa?pid=ImgDet&rs=1" class="img-fluid rounded-circle" width="50%" data-toggle="modal" data-target="#myModal">
+                                    <div class="card text-center mb-3" style="width: 14rem;">
+                                        <div class="card-body">
+                                            <img src="https://th.bing.com/th/id/OIP.4ExqsKhmdKnjieXagyEolwHaHa?pid=ImgDet&rs=1" class="img-fluid rounded-circle py-2" width="50%">
+                                            <hr>
+                                            <p><strong>Nombre:</strong>{%for i in nombre%}
+                                                {{i}}
+                                                {%endfor%}</p>
+                                            <p><strong>Apellidos:</strong>{%for i in apellidos%}
+                                                {{i}}
+                                                {%endfor%}</p>
+                                            <p><strong>Matrícula:</strong> Matricula</p>
+                                            <p><strong>Carrera:</strong> Carrera</p>
+                                            <p><strong>Género:</strong> Género</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <img src="https://th.bing.com/th/id/OIP.4ExqsKhmdKnjieXagyEolwHaHa?pid=ImgDet&rs=1" class="img-fluid rounded-circle" width="50%" data-toggle="modal" data-target="#myModal">
                                 </div>
                                 <div class="col-md-6">
                                     <img src="https://th.bing.com/th/id/OIP.4ExqsKhmdKnjieXagyEolwHaHa?pid=ImgDet&rs=1" class="img-fluid rounded-circle" width="50%" data-toggle="modal" data-target="#myModal">
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -333,68 +360,14 @@
                             <div class="container">
                                 <h1 class="mt-1">Calificación Final</h1>
                                 <hr>
-                                <button id="btnRedireccionar" type="button" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Calificación</button>
+                                <a href="Calificacion.html" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Calificación</a>
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>  
         </div>        
-                <!--Modal Info de pasajeros-->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Detalles del Conductor</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form action="/" method="POST">
-                                <div class="modal-body">
-                                    <p><strong>
-                                        Nombre:
-                                        </strong>
-                                        {%for i in nombre%}
-                                            {{i}}
-                                        {%endfor%} 
-                                    </p>
-                                    <p><strong>
-                                        Apellidos:
-                                        </strong>
-                                        {%for i in apellidos%}
-                                            {{i}}
-                                        {%endfor%} 
-                                    </p>
-                                    <p><strong>
-                                        Matrícula:
-                                        </strong>
-                                        {%for i in matricula%}
-                                            {{i}}
-                                        {%endfor%} 
-                                    </p>
-                                    <p><strong>
-                                        Carrera:
-                                        </strong>
-                                        {%for i in carrera%}
-                                            {{i}}
-                                        {%endfor%} 
-                                    </p>
-                                    <p><strong>
-                                        Sexo:
-                                        </strong>
-                                        {%for i in sexo %}
-                                            {{i}}
-                                        {%endfor%} 
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div><!--Fin Row-->
-        </div><!--Fin container  -->
+         
         
         <!-- INICIO FOOTER -->
         <footer class="text-center text-white" style="background-color: #0a4275;">
@@ -490,38 +463,6 @@
             });
             });
 
-
-            // Script para abrir el primer modal
-            const botonModal1 = document.querySelector('[data-target="#myModalConductor1"]');
-            const modal1 = document.getElementById('myModalConductor1');
-
-            botonModal1.addEventListener('click', () => {
-                const modal = new bootstrap.Modal(modal1);
-                modal.show();
-            });
-
-            // Script para abrir el segundo modal
-            const botonModal2 = document.querySelector('[data-target="#myModalConductor2"]');
-            const modal2 = document.getElementById('myModalConductor2');
-
-            botonModal2.addEventListener('click', () => {
-                const modal = new bootstrap.Modal(modal2);
-                modal.show();
-            });
-        </script><!-- FIN SCRIPT ESTRELLAS -->
-
-        <!-- REDIRECCION DE PAGINA -->
-        <script>
-            // Selecciona el botón por su id
-            const btnRedireccionar = document.getElementById('btnRedireccionar');
-        
-            // Agrega un evento clic al botón
-            btnRedireccionar.addEventListener('click', function() {
-                // Redirige a la página HTML deseada
-                window.location.href = 'Calificacion.html';
-            });
-        </script>
-        
-        
+        </script><!-- FIN SCRIPT ESTRELLAS -->    
     </body><!-- FIN BODY -->
 </html>
