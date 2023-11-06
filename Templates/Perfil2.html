@@ -158,7 +158,12 @@
                                     <ul class="list-group">
                                         <li class="list-group-item">
                                             <figure class="figure text-center col-md-12 my-3">
+                                                {%if fotoPersonal == "sinFotoPersonal "%}
                                                 <img src="https://i.ibb.co/v3w1HS0/Pasajera1.webp" alt="Foto del pasajero" width="150px">
+                                    
+                                                {% else %}
+                                                <img src="{{ fotoPersonal }}" alt="Foto del pasajero" width="150px">
+                                                {% endif %}
                                                 <figcaption class="figure-caption">
                                                     <h2 class="text-center">
                                                         {%for i in nombre%}
@@ -195,17 +200,23 @@
                                 </div> 
                                 <div class="row">
                                     <!-- Contenedor de botones -->
+                                    {% if añadirAuto < 2 %}
                                     <div class="col p-3 d-flex align-items-center">
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-outline-primary mb-2 me-2 justify-content-md-center mx-4" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                                             <i class="bi bi-person-add"></i> Agregar Auto
                                         </button>
-                                        <button type="button" class="btn btn-outline-warning mb-2 me-2 justify-content-md-center" data-bs-toggle="modal" data-bs-target="#passwordModal">
-                                            <i class="bi bi-file-lock"></i> Cambiar Contraseña
+                                    </div>
+                                    {% endif %}
+                                    <div class="col p-3 me-4 d-flex flex-column align-items-center">
+                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#telefonoModal">
+                                            <i class="bi bi-phone">Actualizar Teléfono</i> 
                                         </button>
                                     </div>
                                     <div class="col p-3 me-4 d-flex flex-column align-items-center">
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#telefonoModal"><i class="bi bi-phone"></i> Actualizar Teléfono</button>
+                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#fotoPersonalModal">
+                                            <i class="bi bi-phone">Actualizar Foto Personal</i> 
+                                        </button>
                                     </div>
                                 </div> 
                             </li>
@@ -214,71 +225,79 @@
                 </div>
                 
                 <!-- Agregar un espacio en blanco en la parte derecha -->
-                <div class="col-md-2"></div>
+                <div class="col-md-1"></div>
         
-                <div class="col-md-6 py-5">
+                <!--Contenido de autos-->
+                {% if placa1 == "sinPlaca1" and placa2 == "sinPlaca2" %}
+                <div class="col-md-7 py-5">
+                    <div class="card card-body">
+                        <h1 class="text-center">
+                            Sin autos registrados
+                            <hr> <!-- CREA UNA LÍNEA DE SEPARACIÓN -->
+                        </h1>
+                    </div>
+                </div>
+                {% endif %}
+                {% if placa1 != "sinPlaca1" or placa2 != "sinPlaca2" %}
+                <div class="col-md-7 py-5">
                     <div class="card card-body">
                         <h1 class="text-center">
                             Autos Registrados
                             <hr> <!-- CREA UNA LÍNEA DE SEPARACIÓN -->
                         </h1>
-                        <div class="row row-cols-1 row-cols-md-3 g-4">
-                            {%for auto in autos%}
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="https://th.bing.com/th/id/OIP.3coiyto2KN6KK7zUtyDotAHaEK?pid=ImgDet&rs=1" class="card-img-top" alt="...">
+                        <!--Si solo existe un auto-->
+                        {% if placa1 != "sinPlaca1" and placa2 == "sinPlaca2" %}
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ fotoVehiculo1 }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">{{ placa1 }}</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item"><a href="{{ poliza1 }}" target="_blank">Poliza de Seguro</a></li>
+                              <li class="list-group-item"><a href="{{ circulacion1 }}" target="_blank"> Tarjeta de Circulación</a></li>
+                              <li class="list-group-item"><a href="">Licencia de Conducir</a></li>
+                            </ul>
+                        </div>
+                        {% endif %}
+                        <!--Si existen 2 autos-->
+                        {% if placa1 != "sinplaca1" and placa2 != "sinPlaca2" %}
+                        <div class="row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <div class="card">
+                                    <img src="{{ fotoVehiculo1 }}" style="max-height: 15em; margin: auto;"  class="card-img-top" alt="...">
                                     <div class="card-body">
-                                      <h5 class="card-title">{{auto.2}} {{auto.1}}</h5>
-                                      Placa:   {{auto.0}}
-                                      Color:   {{auto.3}}
-                                      Lugares: {{auto.4}}
-                                      <!-- Botón para ver los archivos PDF subidos -->
-                                        <button type="button" class="btn btn-outline-warning mt-3" data-bs-toggle="modal" data-bs-target="#pdfModal">
-                                              Ver Documentación
-                                        </button>
+                                        <h5 class="card-title">{{ placa1 }}</h5>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"><a href="{{ poliza1 }}" target="_blank">Poliza de Seguro</a></li>
+                                            <li class="list-group-item"><a href="{{ circulacion1 }}" target="_blank"> Tarjeta de Circulación</a></li>
+                                            <li class="list-group-item"><a href="">Licencia de Conducir</a></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            {%endfor%}
+                            <div class="col-sm-6">
+                                <div class="card">
+                                    <img src="{{ fotoVehiculo2 }}" style="max-height: 15em; margin: auto;" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ placa2 }}</h5>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"><a href="{{ poliza2 }}" target="_blank">Poliza de Seguro</a></li>
+                                            <li class="list-group-item"><a href="{{ circulacion2 }}" target="_blank"> Tarjeta de Circulación</a></li>
+                                            <li class="list-group-item"><a href="">Licencia de Conducir</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
+                {% endif %}
             </div>
         </div>
-
-
-          <!-- Modal para mostrar archivos PDF -->
-          <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="pdfModalLabel">Archivos PDF Subidos</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Mostrar los archivos subidos -->
-                        <ul>
-                                {% for INELink in INElinks %}
-                                <!--<li><a href="/static/archivos/121014865_Credencial_INE.pdf" download>INE</a></li>-->
-                                {{ INELink }}
-                                {% endfor %}
-                                <li><a href="/static/archivos/121014865_Credencial_UPQ.pdf" download>Credencial UPQ</a></li>                        
-                                <li><a href="{{ polizaLink }}" download>Poliza de seguro</a></li>
-                                <li>link {{ poliza }}</li>
-                                <li><a href="/static/archivos/121014865_ABC-99_Tarjeta_Circulacion.pdf" download>Tarjeta de circulación</a></li>
-
-                            <!-- Agrega más archivos según sea necesario -->
-                        </ul>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
-                    </div>
-                </div>
-            </div>
-        </div><!-- FIN MODAL -->
     
-      <!-- Modal Contraseña -->
-      <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal Contraseña -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -307,10 +326,10 @@
                 </form>
             </div>
         </div>
-      </div>
+    </div>
      
-     <!-- Modal Agregar Auto -->
-     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal Agregar Auto -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -348,7 +367,7 @@
                                 <div class="mb-3">
                                     <label for="validatedCustomFile" class="form-label">Tarjeta de circulación</label>
                                     <input class="form-control" type="file" id="formFile" name="tarjeta_circula" required>
-                                  </div>
+                                    </div>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3">
@@ -360,7 +379,7 @@
                                 <div class="mb-3">
                                     <label for="validatedCustomFile" class="form-label">INE</label>
                                     <input class="form-control" type="file" id="formFile" name="credencial_INE" required>
-                                  </div>
+                                    </div>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3">
@@ -373,7 +392,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="validateCustomFile" class="form-label">Foto automovil</label>
-                                    <input class="form-control" type="file" id="formFile" name="vehiclePhoto" required>
+                                    <input class="form-control" type="file" id="formFile" name="fotoVehiculo" required>
                                 </div>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
@@ -385,10 +404,36 @@
                 </form>
             </div>
         </div>
-      </div>
+    </div>
 
-         <!-- MODAL DE ACTUALIZAR TELÉFONO -->
-         <div class="modal fade" id="telefonoModal" tabindex="-1" aria-labelledby="telefonoModalLabel" aria-hidden="true">
+    <!--Modal para agregar foto personal-->
+    <div class="modal fade" id="fotoPersonalModal" tabindex="-1" aria-labelledby="fotoPersonalModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Foto Personal</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/actualizar_foto" method="POST" autocomplete="off" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="row g-6">
+                            <div class="col-md-12">
+                                <label for="validateCustomFile" class="form-label">Foto Personal</label>
+                                <input class="form-control" type="file" id="formFile" name="fotoPersonal" required>
+                            </div><!--Cierre col-->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-outline-primary"><i class="bi bi-person-add"></i> Agregar Foto</button>
+                        <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+        <!-- MODAL DE ACTUALIZAR TELÉFONO -->
+        <div class="modal fade" id="telefonoModal" tabindex="-1" aria-labelledby="telefonoModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -399,7 +444,7 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="inputTelefono" class="form-label">Nuevo Número de Teléfono</label>
-                                <input type="tel" class="form-control" id="inputTelefono" name="txtTelefono" required>
+                                <input type="tel" class="form-control" id="inputTelefono" name="txtTelefono" required maxlength="10" placeholder="XXXXXXXXXX">
                             </div>
                         </div>
                         <div class="modal-footer">
