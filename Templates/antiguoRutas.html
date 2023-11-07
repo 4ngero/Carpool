@@ -1,0 +1,99 @@
+{%for cond in conductores%}
+                            <tr class="me-3 ms-5">
+                                <td> {{cond.0}}</td>
+                                <td>{{cond.2}} </td>
+                                <td>
+                                    <a href="/descripcionRuta"><button type="button" class="btn btn-outline-primary me-2" data-toggle="modal"data-target="#myModal2"><i class="bi bi-bus-front"></i> Turno {{cond.1}}</button></a>
+                                    <!-- Modal 1 -->
+                                    <div class="modal fade" id="myModal2">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <!-- Encabezado del modal -->
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title text-center">Datos del Conductor</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+
+                                                <!-- Contenido del modal -->
+                                                <div class="modal-body">
+                                                    <img src="/static/archivos/{{cond.3}}_Foto_Personal.jpg" alt="Imagen de usuario" class="modal-image">
+                                                    <div class="mb-3">
+                                                        <div class="mb-2">
+                                                            <label for="formFileSm" class="form-labe fw-bold">Nombre:</label>
+                                                            <div class="mb-2">
+                                                                <label for="formFileSm" class="form-label">{{cond.2}}</label>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="formFileSm" class="form-label fw-bold">Sexo</label>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="formFileSm" class="form-label">{{cond.6}}</label>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="formFileSm" class="form-label fw-bold">Matricula</label>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="formFileSm" class="form-label">{{cond.3}}</label>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="formFileSm" class="form-label fw-bold">Telefono</label>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="formFileSm" class="form-label">{{cond.4}}</label>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <!-- Pie del modal -->
+                                                <div class="modal-footer">
+                                                    <a href="/descripcionRuta"><button type="button" class="btn btn-outline-primary" <i class="bi bi-info-circle"></i> Información de la Ruta</button></a>
+                                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Conductor</h1>
+                                                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table class="table table-hover table-bordered">
+                                                        <h1>Paradas</h1>
+                                                        <thead class="table-primary">
+                                                            <tr>
+                                                                <th scope="col">Punto de Referencia</th>
+                                                                <th scope="col">Descripción</th>
+                                                                <th scope="col">Hora</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {%for parada in paradas%}
+                                                            {%if cond.5 in parada%}
+                                                            <tr>
+                                                                <td>{{parada.1}}</td>
+                                                                <td>{{parada.2}}</td>
+                                                                <td>{{parada.3}}</td>
+                                                            </tr>
+                                                            {%endif%}
+                                                            {%endfor%}
+                                                        </tbody>
+                                                    </table>
+                                                    <!-- Pie del modal -->
+                                                    <div class="modal-footer">
+                                                        <a href="/reserva_ruta/{{cond.5}}"><button type="button" class="btn btn-outline-primary"><i class="bi bi-info-circle"></i>Registrar Ruta</button></a>
+                                                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--CIERRE MODAL-->
+                                </td>
+                            </tr>
+                            {%endfor%}

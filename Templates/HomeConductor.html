@@ -115,87 +115,8 @@
             </div><!-- FIN CONTAINER -->
         </nav><!-- FIN NAVBAR -->
 
-        <!-- MODAL CONTRASEÑA -->
-        <!--
-        <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar Contraseña</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="/cambiar_contraseña" method="POST">
-                        <div class="modal-body">
-                            <div class="row g-3">
-                                <div class="col-md-12">
-                                    <label for="inputPassword" class="form-label">Nueva Contraseña</label>
-                                    <input type="password" class="form-control" id="inputPassword" name="txtPassword" required>
-                                </div>
-                            </div>
-                            <div class="row g-3">
-                                <div class="col-md-12">
-                                    <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
-                                    <input type="password" class="form-control" id="inputConfirmPassword" name="txtConfirmPassword" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Guardar Contraseña</button>
-                            <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
-                        </div>                        
-                    </form>
-                </div>
-            </div>
-        </div>
-        -->
-        <!-- FIN DE MODAL CONTRASEÑA -->
-        <div class="modal fade" id="perfilModal" tabindex="-1" aria-labelledby="perfilModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="perfilModalLabel">Perfil de Usuario</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <!--<div class="modal-body">
-                        <!-- Contenido del perfil --
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <figure class="figure text-center col-md-12 my-3">
-                                    <img src="https://i.ibb.co/v3w1HS0/Pasajera1.webp" alt="Foto del pasajero" width="150px">
-                                    <figcaption class="figure-caption">
-                                        <h2 class="text-center">Sofía</h2>
-                                        <h2 class="text-center">Naranjos Granado</h2S>
-                                    </figcaption>
-                                </figure>
-                            </li>
-                            <li class="list-group-item">
-                                Matrícula: 121039631
-                            </li>
-                            <li class="list-group-item">
-                                Carrera: Lic. Negocios Internacionales
-                            </li>
-                            <li class="list-group-item">
-                                NSS: 124569875
-                            </li>
-                            <li class="list-group-item">
-                                Teléfono: 442-589-63-25
-                            </li>
-                            <li class="list-group-item">
-                                Correo Institucional: 121039631@upq.edu.mx
-                            </li>
-                            <li class="list-group-item">
-                                Sexo: Mujer
-                            </li>
-                        </ul>
-                        <!-- Fin del contenido del perfil --
-                    </div>-->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#telefonoModal"><i class="bi bi-phone"></i> Actualizar Teléfono</button>                        
-                        <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
+       
         <!-- MODAL DE ACTUALIZAR TELÉFONO -->
         <div class="modal fade" id="telefonoModal" tabindex="-1" aria-labelledby="telefonoModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -266,7 +187,7 @@
                     <div class="row">
                         <div class="card primera-card">
                             <div class="card-body text-center">
-                                <h1>Detalles de Ruta {{ruta.0}}</h1>
+                                <h1>Detalles de Ruta {{ loop.index }}</h1>
                                 <hr>
                                 <div>
                                     <h3>

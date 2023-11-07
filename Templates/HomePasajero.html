@@ -138,9 +138,6 @@
                                 <a id="perfilLink" class="dropdown-item" href="#">Perfil</a>
                             </li>
                             <li>
-                                <a id="cambiarContraseñaLink" class="dropdown-item" href="#">Cambiar Contraseña</a>
-                            </li>
-                            <li>
                                 <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
                             </li>
                         </ul>
@@ -193,7 +190,7 @@
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <figure class="figure text-center col-md-12 my-3">
-                                    <img src="https://i.ibb.co/v3w1HS0/Pasajera1.webp" alt="Foto del pasajero" width="150px">
+                                    <img src="/static/archivos/{{datos.0}}_Foto_Personal.jpg" alt="Foto del pasajero" width="150px">
                                     <figcaption class="figure-caption">
                                         <h2 class="text-center">
                                             {%for i in nombre%}
@@ -230,6 +227,7 @@
                         <!-- Fin del contenido del perfil -->
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#fotoPersonalModal"><i class="bi bi-phone"></i> Actualizar Foto Personal</button>                        
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#telefonoModal"><i class="bi bi-phone"></i> Actualizar Teléfono</button>                        
                         <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
                     </div>
@@ -260,6 +258,32 @@
             </div>
         </div>        
         <!-- FIN MODAL TELÉFONO -->
+
+        <!--Modal para agregar foto personal-->
+        <div class="modal fade" id="fotoPersonalModal" tabindex="-1" aria-labelledby="fotoPersonalModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Foto Personal</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="/actualizar_foto_pasajero" method="POST" autocomplete="off" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="row g-6">
+                                <div class="col-md-12">
+                                    <label for="validateCustomFile" class="form-label">Foto Personal</label>
+                                    <input class="form-control" type="file" id="formFile" name="fotoPersonal" required>
+                                </div><!--Cierre col-->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-primary"><i class="bi bi-person-add"></i> Agregar Foto</button>
+                            <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <!-- CONTENIDO EN LA PÁG PRINCIPAL -->
         <div class="container py-5">

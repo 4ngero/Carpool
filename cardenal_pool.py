@@ -236,7 +236,7 @@ def actualizar_telefonoc():
     mysql.connection.commit()
     return redirect("/conductor/perfil")
 
-#insertar foto personal
+#insertar foto personal conductor
 @app.route('/actualizar_foto', methods=['POST'])
 def actualizar_foto():
     if request.method == "POST":
@@ -258,6 +258,29 @@ def actualizar_foto():
             foto_personal.save(upload_path)
             
     return redirect('/conductor/perfil')
+
+#insertar foto personal conductor
+@app.route('/actualizar_foto_pasajero', methods=['POST'])
+def actualizar_foto_pasajero():
+    if request.method == "POST":
+        CC= mysql.connection.cursor()
+        CC.execute("select matricula from vw_inscripciones where matricula = " + str(session["Matricula"]) + ";")
+        matriculaUtil = CC.fetchone()
+
+        if matriculaUtil is not None:
+            matriculaUtil = matriculaUtil[0].replace("'", '').replace('"', '').replace('(', '').replace(')', '').replace(',', '')
+            
+        foto_personal = request.files['fotoPersonal']
+        if foto_personal:
+            basepath = os.path.dirname(__file__)
+            filename = secure_filename(foto_personal.filename)
+            extension  = os.path.splitext(filename)[1]
+            nombreFile = str(matriculaUtil) +"_Foto_Personal" + extension
+            
+            upload_path = os.path.join(basepath, 'static/archivos', nombreFile)
+            foto_personal.save(upload_path)
+            
+    return redirect('/pasajero')
 
 #insertar auto
 @app.route('/ingresar_auto', methods=['POST'])

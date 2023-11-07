@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" href="https://i.ibb.co/9Gy1hPQ/CARPOOL.png">
+    <link rel="stylesheet" href="static/styles.css">
+    <script src="static/script.js" defer></script>
+    <script src="static/Script1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.20.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <title>Rutas</title>
+    <style>
+        body {
+            background-image: url("https://www.liderempresarial.com/wp-content/uploads/2022/05/UPQ.jpg");
+
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .modal-content .modal-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+                           /* ESTILOS DEL BODY */
+                           body {
+                background-image: url('https://www.liderempresarial.com/wp-content/uploads/2022/05/UPQ.jpg');
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+                margin: 0;
+                padding: 0;
+                font-family: 'Poppins', sans-serif;
+                justify-content: space-between;
+            }
+
+            .modal-content .modal-image {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            /* ESTILOS DEL FOOTER */
+            .footer {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: #0a4275;
+                color: white;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            .footer-container {
+                background-color: #0a4275;
+                /* Cambio de color */
+                color: white;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            footer {
+                margin: 0;
+                background: transparent;
+            }
+
+            /* ESTILOS DEL NAVBAR */
+            .navbar-light .navbar-nav .nav-link:hover {
+                background-color: #0a4275;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+                border-radius: 6px;
+            }
+
+            .rating-box {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                /* Centra horizontalmente */
+                justify-content: center;
+                /* Centra verticalmente */
+                background: #fff;
+                padding: 25px 50px 35px;
+                border-radius: 8px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            }
+
+            .rating-box header {
+                font-size: 22px;
+                color: #dadada;
+                font-weight: 500;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .rating-box .stars {
+                display: flex;
+                align-items: center;
+                gap: 25px;
+            }
+
+            .stars i {
+                color: #e6e6e6;
+                font-size: 35px;
+                cursor: pointer;
+                transition: color 0.2s ease;
+            }
+
+            .stars i.active {
+                color: #ff9c1a;
+            }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="https://i.ibb.co/9Gy1hPQ/CARPOOL.png">
+</head>
+<body>
+    <!-- INICIO NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-scroll" style="background-color: #072846;">
+        <!-- INICIO CONTAINER -->
+        <div class="container-fluid">
+            <!-- INICIO BUTTON -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button><!-- FIN BUTTON -->
+
+            <!-- Navbar brand -->
+            <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                <img src="https://calareo.ca/wp-content/uploads/2020/10/UPQ-logo.png" height="65">
+            </a>
+            <!-- ELEMENTOS A LA IZQUIERDA "HOME" -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="pasajero/ruta">Rutas</a>
+                </li>
+            </ul><!-- FIN ELEMENTOS A LA IZQUIERDA -->
+            <!-- ELEMENTOS A LA DERECHA -->
+            <div class="ml-auto">
+                <!-- Avatar -->
+                <div class="dropdown">
+                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://i.ibb.co/jvrQmyM/CARPOOL-CARDENAL.png" class="rounded-circle" height="60" alt="Avatar Image" loading="lazy"/>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                        <li>
+                            <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div><!-- FIN CONTAINER -->
+    </nav><!-- FIN NAVBAR -->
+    
+    <div class="card container p-4">
+        <h1 class="text-center">Detalles de la Ruta</h1>
+        <div class="card-body container">
+            <table class="table table-striped">
+                <thead>
+                    <tr class="text-center border-2 p-4">
+                        <th scope="col">Punto de Referencia</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Hora</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center p-4 py-2">
+                        <th scope="row">Oxxo</th>
+                        <td>Pasa enfrente del Oxxo</td>
+                        <td>3:30pm</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center gap-5">
+            <a href="#" class="btn btn-outline-primary" tabindex="-1" role="button" aria-disabled="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+              </svg> Registrar Ruta</a>
+            <a href="pasajero/ruta" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true"><i class="bi bi-arrow-return-left"></i> Cancelar Restro</a>
+        </div>
+    
+    </div>
+
+
+     <!-- INICIO FOOTER -->
+     <footer class="text-center text-white" style="background-color: #0a4275;">
+        <div class="container p-4 pb-0"><!-- INICIO CONTAINER -->
+            <section class="mb-4"><!-- INICIO SECTION -->
+            <!-- Facebook -->
+            <a class="btn btn-outline-light btn-floating m-1" href="https://es-la.facebook.com/UPQoficial/" role="button"><i class="fab fa-facebook-f"></i></a>
+
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/UPQoficial" role="button"><i class="fab fa-twitter"></i></a>
+
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1" href="https://www.upq.mx/" role="button"><i class="fab fa-google"></i></a>
+
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/soyupq/" role="button"><i class="fab fa-instagram"></i></a>
+            </section><!-- FIN SECTION -->
+        </div><!-- FIN CONTAINER -->
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-white" href="/">CARPOOL CARDENAL</a>
+        </div><!-- Copyright -->
+    </footer><!-- FIN FOOTER -->
+
+    <!-- INICIO SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <!-- FIN SCRIPTS -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</body>
+</html>
