@@ -1,6 +1,7 @@
 #importación del framework
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_mysqldb import MySQL
+import os
 
 #inicialización del APP
 app= Flask(__name__)
@@ -8,6 +9,8 @@ app= Flask(__name__)
 app.config['MYSQL_HOST']='localhost'
 app.config['MYSQL_USER']='root'
 app.config['MYSQL_PASSWORD']='cz757002'
+#lOCAL app.config['MYSQL_PASSWORD']='wS314762UU'
+#app.config['MYSQL_PASSWORD']='cz757002'
 app.config['MYSQL_DB']='carpool'
 app.secret_key= 'mysecretkey'
 mysql= MySQL(app)
@@ -149,6 +152,52 @@ def actualizar_telefonoc():
     CC.execute("update conductor set telefono=%s where id_conductor=%s",(VTelefono,session["Conductor"],))
     mysql.connection.commit()
     return redirect("/conductor/perfil")
+
+#insertar foto personal conductor
+@app.route('/actualizar_foto', methods=['POST'])
+def actualizar_foto():
+    if request.method == "POST":
+        CC= mysql.connection.cursor()
+        CC.execute("select matricula from vw_inscripciones where matricula = " + str(session["Matricula"]) + ";")
+        matriculaUtil = CC.fetchone()
+
+        if matriculaUtil is not None:
+            matriculaUtil = matriculaUtil[0].replace("'", '').replace('"', '').replace('(', '').replace(')', '').replace(',', '')
+            
+        foto_personal = request.files['fotoPersonal']
+        if foto_personal:
+            basepath = os.path.dirname(__file__)
+            filename = secure_filename(foto_personal.filename)
+            extension  = os.path.splitext(filename)[1]
+            nombreFile = str(matriculaUtil) +"_Foto_Personal" + extension
+            
+            upload_path = os.path.join(basepath, 'static/archivos', nombreFile)
+            foto_personal.save(upload_path)
+            
+    return redirect('/conductor/perfil')
+
+#insertar foto personal conductor
+@app.route('/actualizar_foto_pasajero', methods=['POST'])
+def actualizar_foto_pasajero():
+    if request.method == "POST":
+        CC= mysql.connection.cursor()
+        CC.execute("select matricula from vw_inscripciones where matricula = " + str(session["Matricula"]) + ";")
+        matriculaUtil = CC.fetchone()
+
+        if matriculaUtil is not None:
+            matriculaUtil = matriculaUtil[0].replace("'", '').replace('"', '').replace('(', '').replace(')', '').replace(',', '')
+            
+        foto_personal = request.files['fotoPersonal']
+        if foto_personal:
+            basepath = os.path.dirname(__file__)
+            filename = secure_filename(foto_personal.filename)
+            extension  = os.path.splitext(filename)[1]
+            nombreFile = str(matriculaUtil) +"_Foto_Personal" + extension
+            
+            upload_path = os.path.join(basepath, 'static/archivos', nombreFile)
+            foto_personal.save(upload_path)
+            
+    return redirect('/pasajero/admin')
 
 #insertar auto
 @app.route('/ingresar_auto', methods=['POST'])
@@ -329,11 +378,9 @@ def solicitud(id):
     mysql.connection.commit()
     return redirect("/conductor/solicitudes")
 
-@app.route('/admin')
-def admin():
-    if not session.get("Matricula"):
-            return redirect("/login")
-    return render_template('Administrador.html')
+
+    
+    
 
 #ejecución del servidor en el puerto 5000
 if __name__ == '__main__':
