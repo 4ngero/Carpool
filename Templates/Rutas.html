@@ -171,8 +171,11 @@
             <div class="col ">
                 <div class=" card card-body shadow border-1 bg-active">
                     <table class="table table-striped table-bordered">
+                        <div class="mb-4 position-absolute top-2">
+                            <a href="/pasajero" class="btn btn-outline-danger"><i class="bi bi-window-x"></i> Cancelar Solicitud</a>
+                        </div>
                         <thead>
-                            <h1>RUTAS DISPONIBLES</h1>
+                            <h1 class="mt-2 py-2">Rutas Disponibles</h1>
                             <tr class="me-3 ms-5">
                                 <th>Nombre de la Ruta</th>
                                 <th>Conductor</th>
@@ -198,8 +201,8 @@
 
                     <!-- Contenido del modal -->
                     <div class="modal-body">
-                        <img src="/static/archivos/{{cond.3}}_Foto_Personal.jpg"
-                            alt="Imagen de usuario" class="modal-image">
+                        <img src="/static/archivos/{{cond.3}}_Foto_Personal.jpg" class="img-fluid mt-3"  width="150px"
+                            alt="Imagen de usuario" >
                         <div class="mb-3">
                             <div class="mb-2">
                                 <label for="formFileSm" class="form-labe fw-bold">Nombre:</label>
@@ -235,7 +238,7 @@
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Conductor</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Detalle de Ruta</h1>
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -263,7 +266,7 @@
                     </div>
                     <!-- Pie del modal -->
                     <div class="modal-footer">
-                        <a href="/reserva_ruta/{{ cond.5 }}"><button type="button" class="btn btn-outline-primary"><i class="bi bi-info-circle"></i> Registrar Ruta</button></a>
+                        <a href="/reserva_ruta/{{ cond.5 }}"><button type="button" class="btn btn-outline-primary"><i class="bi bi-car-front"></i> Registrar Ruta</button></a>
                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
                     </div>
                 </div>

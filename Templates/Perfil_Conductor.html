@@ -162,7 +162,7 @@
                                                 <img src="https://i.ibb.co/v3w1HS0/Pasajera1.webp" alt="Foto del pasajero" width="150px">
                                     
                                                 {% else %}
-                                                <img src="{{ fotoPersonal }}" alt="Foto del pasajero" width="150px">
+                                                <img src="{{ fotoPersonal }}" alt="Foto del Conductor" width="150px">
                                                 {% endif %}
                                                 <figcaption class="figure-caption">
                                                     <h2 class="text-center">
@@ -208,14 +208,14 @@
                                         </button>
                                     </div>
                                     {% endif %}
-                                    <div class="col p-3 me-4 d-flex flex-column align-items-center">
+                                    <div class="col p-3 d-flex flex-column align-items-center">
                                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#telefonoModal">
-                                            <i class="bi bi-phone">Actualizar Teléfono</i> 
+                                            <i class="bi bi-phone"></i> Actualizar Teléfono
                                         </button>
                                     </div>
-                                    <div class="col p-3 me-4 d-flex flex-column align-items-center">
+                                    <div class="col p-3 d-flex flex-column align-items-center">
                                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#fotoPersonalModal">
-                                            <i class="bi bi-phone">Actualizar Foto Personal</i> 
+                                            <i class="bi bi-person-badge"></i> Actualizar Foto  
                                         </button>
                                     </div>
                                 </div> 
@@ -232,7 +232,7 @@
                 <div class="col-md-7 py-5">
                     <div class="card card-body">
                         <h1 class="text-center">
-                            Sin autos registrados
+                            Sin Autos Registrados
                             <hr> <!-- CREA UNA LÍNEA DE SEPARACIÓN -->
                         </h1>
                     </div>
@@ -257,7 +257,13 @@
                               <li class="list-group-item"><a href="{{ circulacion1 }}" target="_blank"> Tarjeta de Circulación</a></li>
                               <li class="list-group-item"><a href="">Licencia de Conducir</a></li>
                             </ul>
+                            <div class="mt-2 px-2 py-2">
+                                <button type="button" class="btn btn-outline-danger float-end">
+                                    <i class="bi bi-car-front-fill"></i> Eliminar Auto 
+                                </button>
+                            </div>
                         </div>
+                        
                         {% endif %}
                         <!--Si existen 2 autos-->
                         {% if placa1 != "sinplaca1" and placa2 != "sinPlaca2" %}
@@ -272,7 +278,7 @@
                                             <li class="list-group-item"><a href="{{ circulacion1 }}" target="_blank"> Tarjeta de Circulación</a></li>
                                             <li class="list-group-item"><a href="">Licencia de Conducir</a></li>
                                         </ul>
-                                    </div>
+                                    </div>                                 
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -285,7 +291,7 @@
                                             <li class="list-group-item"><a href="{{ circulacion2 }}" target="_blank"> Tarjeta de Circulación</a></li>
                                             <li class="list-group-item"><a href="">Licencia de Conducir</a></li>
                                         </ul>
-                                    </div>
+                                    </div>                                  
                                 </div>
                             </div>
                         </div>
@@ -414,7 +420,7 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Foto Personal</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/actualizar_foto" method="POST" autocomplete="off" enctype="multipart/form-data">
+                <form action="/actualizar_foto_conductor" method="POST" autocomplete="off" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="row g-6">
                             <div class="col-md-12">
@@ -424,7 +430,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-outline-primary"><i class="bi bi-person-add"></i> Agregar Foto</button>
+                        <button type="submit" class="btn btn-outline-primary"><i class="bi bi-person-badge"></i> Agregar Foto</button>
                         <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
                     </div>
                 </form>

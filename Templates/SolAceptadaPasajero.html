@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -82,7 +83,7 @@
                 <!-- ELEMENTOS A LA IZQUIERDA "HOME" -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                      <a class="nav-link text-white" href="/conductor">Home</a>
+                      <a class="nav-link text-white" href="/pasajero">Home</a>
                     </li>
                 </ul><!-- FIN ELEMENTOS A LA IZQUIERDA -->
                 <!-- ELEMENTOS A LA DERECHA -->
@@ -102,85 +103,79 @@
             </div><!-- FIN CONTAINER -->
         </nav><!-- FIN NAVBAR -->
 
-<!-- TABLA DE SOLICITUDES -->   
-<div class="container text-center py-5">
-    <div class="row justify-content-md-center">
-        <div class="col ">
-            <div class=" card card-body shadow border-1 bg-active">
-                <table class="table table-bordered table-shadow p">
-                    <div class="mb-4 position-absolute top-2">
-                        <a href="/conductor" class="btn btn-outline-danger"><i class="bi bi-person-x"></i> Cancelar Solicitud</a>
+        <div class="container bg-white p-4 rounded mt-5 text-center">
+            <div class="mb-3 position-absolute top-2">
+                <a href="/pasajero" class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</a>
+            </div>
+            <div class="row">
+                <h1 class="text-center mb-4">Información del Conductor</h1>
+                <hr>
+                {% if conductor %}
+                    <div class="col-md-6">
+                        <div class="card" style="width: 25rem;">
+                            <div class="card-body">
+                                <h5 class="card-title mt-3">Conductor</h5>
+                                <hr>
+                                <div class="text-center">
+                                    <img src="/static/archivos/{{ conductor.0.1 }}_Foto_Personal.jpg" alt="{{ conductor.0.1 }} - Foto de Conductor" class="img-fluid" width="130px">
+                                </div>                        
+                                <hr>
+                                <p><strong>Nombre:</strong> {{ conductor.0.0 }}</p>
+                                <p><strong>Matrícula:</strong> {{ conductor.0.1 }}</p>
+                                <p><strong>Carrera:</strong> {{ conductor.0.2 }}</p>
+                                <p><strong>Sexo:</strong> {{ conductor.0.3 }}</p>
+                                <p><strong>Teléfono:</strong> {{ conductor.0.4 }}</p>
+                            </div>
+                        </div>
                     </div>
-                    <thead>
-                        <H1>Solicitudes</H1>
-                        <tr class="me-3 ms-5">
-                            <th>Nombre del Pasajero</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tbody>
-                            {% for sol in solicitudes %}
-                                <tr class="me-3 ms-5">
-                                    <td class="d-flex align-items-center">
-                                        <div class="me-5">
-                                            <img src="/static/archivos/{{sol.3}}_Foto_Personal.jpg" alt="{{ sol.4 }} - Foto de Pasajeros" class="img-fluid mt-3" width="130px">
-                                        </div>
-                                        <div class="text-center me-5 mt-5">
-                                            <p>{{sol.4}}</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <form action="/conductor/accion_solicitud" method="POST">
-                                            <input type="hidden" name="solicitud_id" value="{{ sol.0 }}">
-                                            <button type="submit" name="accion" value="aceptar" class="btn btn-outline-primary btn-block me-4 mb-5 mt-5">
-                                                <i class="bi bi-check2"></i> Aceptar
-                                            </button>
-                                            <button type="submit" name="accion" value="rechazar" class="btn btn-outline-danger btn-block me-2 mb-5 mt-5">
-                                                <i class="bi bi-x"></i> Rechazar
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                </table>
+                {% endif %}
+        
+                {% if auto %}
+                    <div class="col-md-6">
+                        <div class="card" style="width: 20rem;">
+                            <div class="card-body">
+                                <h5 class="card-title mt-3">Auto</h5>
+                                <hr> 
+                                <img src="/static/archivos/{{ conductor.0.1 }}_{{ auto.0.2 }}_Foto_Vehiculo.jpg" alt="{{ auto.0.2 }} - Foto del Auto" class="img-fluid" width="130px">
+                                <hr>
+                                <p><strong>Marca:</strong> {{ auto.0.0 }}</p>
+                                <p><strong>Modelo:</strong> {{ auto.0.1 }}</p>
+                                <p><strong>No.Placas:</strong> {{ auto.0.2 }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
-    </div>
-</div>
-
-
-</div>
-        <!-- INICIO FOOTER -->
-        <footer class="text-center text-white" style="background-color: #0a4275;">
-            <div class="container p-4 pb-0"><!-- INICIO CONTAINER -->
-                <section class="mb-4"><!-- INICIO SECTION -->
-                <!-- Facebook -->
-                <a class="btn btn-outline-light btn-floating m-1" href="https://es-la.facebook.com/UPQoficial/" role="button"><i class="fab fa-facebook-f"></i></a>
-
-                <!-- Twitter -->
-                <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/UPQoficial" role="button"><i class="fab fa-twitter"></i></a>
-
-                <!-- Google -->
-                <a class="btn btn-outline-light btn-floating m-1" href="https://www.upq.mx/" role="button"><i class="fab fa-google"></i></a>
-
-                <!-- Instagram -->
-                <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/soyupq/" role="button"><i class="fab fa-instagram"></i></a>
-                </section><!-- FIN SECTION -->
-            </div><!-- FIN CONTAINER -->
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2020 Copyright:
-            <a class="text-white" href="/">CARPOOL CARDENAL</a>
-            </div><!-- Copyright -->
-        </footer><!-- FIN FOOTER -->
-
-        <!-- INICIO SCRIPTS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="sweetalert2.all.min.js"></script>
-        <!-- FIN SCRIPTS -->
+        <br><br><br><br>
         
-    </body><!-- FIN BODY -->
-</html>
+
+ <!-- INICIO FOOTER -->
+ <footer class="text-center text-white" style="background-color: #0a4275;">
+    <div class="container p-4 pb-0"><!-- INICIO CONTAINER -->
+        <section class="mb-4"><!-- INICIO SECTION -->
+        <!-- Facebook -->
+        <a class="btn btn-outline-light btn-floating m-1" href="https://es-la.facebook.com/UPQoficial/" role="button"><i class="fab fa-facebook-f"></i></a>
+
+        <!-- Twitter -->
+        <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/UPQoficial" role="button"><i class="fab fa-twitter"></i></a>
+
+        <!-- Google -->
+        <a class="btn btn-outline-light btn-floating m-1" href="https://www.upq.mx/" role="button"><i class="fab fa-google"></i></a>
+
+        <!-- Instagram -->
+        <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/soyupq/" role="button"><i class="fab fa-instagram"></i></a>
+        </section><!-- FIN SECTION -->
+    </div><!-- FIN CONTAINER -->
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:
+    <a class="text-white" href="/">CARPOOL CARDENAL</a>
+    </div><!-- Copyright -->
+</footer><!-- FIN FOOTER -->
+
+<!-- INICIO SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<!-- FIN SCRIPTS -->

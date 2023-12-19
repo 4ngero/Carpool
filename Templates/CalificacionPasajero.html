@@ -58,7 +58,7 @@
                 padding: 10px 0;
             }
 
-            footer {
+            .footer {
                 margin: 0;
                 background: transparent;
             }
@@ -157,44 +157,40 @@
                                 <ul class="list-group">
                                     <li class="list-group-item">
                                         <figure class="figure text-center col-md-12 my-3">
-                                            <img src="https://i.ibb.co/v3w1HS0/Pasajera1.webp" alt="Foto del pasajero" width="150px">
-                                            <figcaption class="figure-caption">
-                                                <h2 class="text-center">
-                                                    {%for i in nombre%}
-                                                    {{i}}
-                                                    {%endfor%}</h2>
-                                                <h2 class="text-center">
-                                                    {%for i in apellidos%}
-                                                    {{i}}
-                                                    {%endfor%}
-                                                </h2S>
-                                            </figcaption>
+                                            <img src="/static/archivos/{{conductor.0.1}}_Foto_Personal.jpg" alt="Foto del pasajero" width="150px">
                                         </figure>
                                     </li>
                                     <li class="list-group-item">
-                                        Matrícula: {{datos.0}}
+                                        Nombre: {{conductor.0.0}}
                                     </li>
                                     <li class="list-group-item">
-                                        Carrera: {{datos.3}}
+                                        Matrícula: {{conductor.0.1}}
                                     </li>
                                     <li class="list-group-item">
-                                        NSS: {{datos.7}}
+                                        Carrera: {{conductor.0.2}}
                                     </li>
                                     <li class="list-group-item">
-                                        Teléfono: 442-589-63-25
+                                        NSS: {{conductor.0.5}}
                                     </li>
                                     <li class="list-group-item">
-                                        Correo Institucional: {{datos.5}}
+                                        Teléfono: {{conductor.0.4}}
                                     </li>
                                     <li class="list-group-item">
-                                        Sexo: {{datos.4}}
+                                        Correo Institucional: {{conductor.0.6}}
+                                    </li>
+                                    <li class="list-group-item">
+                                        Sexo: {{conductor.0.3}}
                                     </li>
                                 </ul>
+                                <a href="/pasajero" class="btn btn-outline-warning mt-3"><i class="bi bi-house"></i> Regresar</a>
+
                                 <!-- Fin del contenido del perfil -->
                             </div> 
                         </li>
                     </ul>
+                    
                 </div>
+                
                 <div class="col-md-8 ms-auto d-flex py-5">
                     <!-- Columna derecha para Card 2, 3 y 4 -->
                     <div class="col-md-8 ms-auto">
@@ -228,8 +224,8 @@
                 </div>
             </div>
         </div>
-                
-       
+        
+     
         <!-- INICIO FOOTER -->
         <footer class="text-center text-white" style="background-color: #0a4275;">
             <div class="container p-4 pb-0"><!-- INICIO CONTAINER -->
@@ -298,5 +294,4 @@
         <script src="sweetalert2.all.min.js"></script>
         <!-- FIN SCRIPTS -->
         
-    </body><!-- FIN BODY -->
 </html>

@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.20.0/font/bootstrap-icons.css" rel="stylesheet">
 
-        
+                
         <title>Conductor</title>
         <style>
                         /* ESTILOS DEL BODY */
@@ -93,7 +93,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/conductor/solicitudes">Solicitudes</a>
-                      </li>
+                    </li>
                 </ul><!-- FIN ELEMENTOS A LA IZQUIERDA -->
                 <!-- ELEMENTOS A LA DERECHA -->
                 <div class="ml-auto">
@@ -115,8 +115,87 @@
             </div><!-- FIN CONTAINER -->
         </nav><!-- FIN NAVBAR -->
 
-        
-       
+        <!-- MODAL CONTRASEÑA -->
+        <!--
+        <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar Contraseña</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="/cambiar_contraseña" method="POST">
+                        <div class="modal-body">
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label for="inputPassword" class="form-label">Nueva Contraseña</label>
+                                    <input type="password" class="form-control" id="inputPassword" name="txtPassword" required>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
+                                    <input type="password" class="form-control" id="inputConfirmPassword" name="txtConfirmPassword" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Guardar Contraseña</button>
+                            <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
+                        </div>                        
+                    </form>
+                </div>
+            </div>
+        </div>
+        -->
+        <!-- FIN DE MODAL CONTRASEÑA -->
+        <div class="modal fade" id="perfilModal" tabindex="-1" aria-labelledby="perfilModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="perfilModalLabel">Perfil de Usuario</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!--<div class="modal-body">
+                        <!-- Contenido del perfil --
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <figure class="figure text-center col-md-12 my-3">
+                                    <img src="https://i.ibb.co/v3w1HS0/Pasajera1.webp" alt="Foto del pasajero" width="150px">
+                                    <figcaption class="figure-caption">
+                                        <h2 class="text-center">Sofía</h2>
+                                        <h2 class="text-center">Naranjos Granado</h2S>
+                                    </figcaption>
+                                </figure>
+                            </li>
+                            <li class="list-group-item">
+                                Matrícula: 121039631
+                            </li>
+                            <li class="list-group-item">
+                                Carrera: Lic. Negocios Internacionales
+                            </li>
+                            <li class="list-group-item">
+                                NSS: 124569875
+                            </li>
+                            <li class="list-group-item">
+                                Teléfono: 442-589-63-25
+                            </li>
+                            <li class="list-group-item">
+                                Correo Institucional: 121039631@upq.edu.mx
+                            </li>
+                            <li class="list-group-item">
+                                Sexo: Mujer
+                            </li>
+                        </ul>
+                        <!-- Fin del contenido del perfil --
+                    </div>-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#telefonoModal"><i class="bi bi-phone"></i> Actualizar Teléfono</button>                        
+                        <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- MODAL DE ACTUALIZAR TELÉFONO -->
         <div class="modal fade" id="telefonoModal" tabindex="-1" aria-labelledby="telefonoModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -147,52 +226,18 @@
             <div class="row">
                 <!-- Card 1 -->
                 <div class="col-md-6">
-                    <div class="row">
-                        <div class="card primera-card">
-                            <div class="card-body text-center">
-                                <h1>Registrar nueva ruta</h1>
-                                <hr>
-                                <div>
-                                    <form action="/registrar_ruta" method="POST">
-                                        <div class="modal-body">
-                                            <div class="row g-3">
-                                                <div class="col-md-12">
-                                                    <label for="inputPassword" class="form-label">Punto de Salida</label>
-                                                    <input type="text" class="form-control" id="inputTurno" name="txtRuta" required>
-                                                </div>
-                                            </div>
-                                            <div class="row g-3">
-                                                <div class="col-md-12">
-                                                    <label for="inputTurno" class="form-label">Turno de ruta</label>
-                                                    <select class="form-select" id="floatingSelectGrid" id="inputTurno" name="txtTurno" required>
-                                                        <option value="">Selecciona uno</option>
-                                                        <option value="Matutino">Matutino</option>
-                                                        <option value="Vespertino">Vespertino</option>
-                                                        <option value="Nocturno">Nocturno</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br>
-                                            <button type="submit" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Registrar Ruta</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
                     {%if 'None' in  Vnone%}
                     {%else%}
                     {%for ruta in rutas%}
                     <div class="row">
                         <div class="card primera-card">
                             <div class="card-body text-center">
-                                <h1>Detalles de Ruta {{ loop.index }}</h1>
+                                <h1>Detalles de Ruta {{ruta.0}}</h1>
                                 <hr>
                                 <div>
                                     <h3>
-                                    Ruta:{{ruta.1}}<br>
-                                    Turno:{{ruta.3}}<br>
+                                    Ruta: {{ruta.1}}<br>
+                                    Turno: {{ruta.3}}<br>
                                     </h3>
                                     <p class="p-4">Puntos de Referencia Registrados:</p>
                                     <hr>
@@ -201,9 +246,9 @@
                                 </div>
                                 <table id="referenceTable" class="table">
                                     <tr>
-                                        <th scope="col">Punto de referencia</th>
+                                        <th scope="col">Punto de Referencia</th>
                                         <th scope="col">Descripción</th>
-                                        <th scope="col">Hora aproximada</th>
+                                        <th scope="col">Hora Aproximada</th>
                                     </tr>
                                     
                                     {%for parada in paradas%}
@@ -218,6 +263,11 @@
                                     {%endfor%}
                                     
                                 </table>
+                                <div>
+                                    <a href="/eliminarRutaCompleta/{{ruta.0}}" class="btn btn-outline-danger float-end" id="eliminarRutaBtn">
+                                        <i class="bi bi-trash3"></i> Eliminar Ruta
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -225,27 +275,54 @@
                     {%endfor%}
                     {%endif%}
                 </div><!--Fin Card 1-->
-                <div class="col-md-5 ms-auto py-4">
-                    <div class="card segunda-card mb-4"><!--Card 2-->
+                <div class="col-md-5 ms-auto">
+                    <div class="row">
+                        <div class="card primera-card">
+                            <div class="card-body text-center">
+                                <h1>Registrar Nueva Ruta</h1>
+                                <hr>
+                                <div>
+                                        <form action="/registrar_ruta" method="POST">
+                                            <div class="modal-body">
+                                                <div class="row g-3">
+                                                    <div class="col-md-12">
+                                                        <label for="inputPassword" class="form-label">Punto de Salida</label>
+                                                        <input type="text" class="form-control" id="inputTurno" name="txtRuta" required>
+                                                    </div>
+                                                </div>
+                                                <div class="row g-3">
+                                                    <div class="col-md-12">
+                                                        <label for="inputTurno" class="form-label">Turno de Ruta</label>
+                                                        <select class="form-select" id="floatingSelectGrid" id="inputTurno" name="txtTurno" required>
+                                                            <option value="">Selecciona uno</option>
+                                                            <option value="Matutino">Matutino</option>
+                                                            <option value="Vespertino">Vespertino</option>
+                                                            <option value="Nocturno">Nocturno</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <button type="submit" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i> Registrar Ruta</button>
+                                        </form>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card segunda-card mb-4 mt-4" style="width: 33rem;"><!--Card 2-->
                         <div class="card-body text-center mx-auto">
-                            <!--Imagenes redondeadas-->
                             <div class="row">
-                                <h3>Pasajeros</h3>
-                                <div class="col-md-6 mb-4">
-                                    <img src="https://th.bing.com/th/id/OIP.4ExqsKhmdKnjieXagyEolwHaHa?pid=ImgDet&rs=1" class="img-fluid rounded-circle" width="50%" data-toggle="modal" data-target="#myModal">
+                                <h1>Pasajeros</h1>
+                                <hr>
+                                <div>
+                                    <form action="/conductor/accion_solicitud" method="POST">
+                                        <button type="submit" name="accion" value="aceptar" class="btn btn-outline-primary btn-block me-4 mb-3 mt-3">
+                                            <i class="bi bi-people-fill"></i> Ver Información de los Pasajeros
+                                        </button>
+                                    </form>
                                 </div>
-                                <div class="col-md-6">
-                                    <img src="https://previews.123rf.com/images/yupiramos/yupiramos1705/yupiramos170514528/77978483-dise%C3%B1o-gr%C3%A1fico-del-ejemplo-del-vector-del-icono-del-perfil-del-hombre-joven.jpg" class="img-fluid rounded-circle" width="50%" data-toggle="modal" data-target="#myModal">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <img src="https://previews.123rf.com/images/jemastock/jemastock1712/jemastock171209574/91945368-dise%C3%B1o-gr%C3%A1fico-del-ejemplo-del-vector-del-icono-del-avatar-del-perfil-de-la-mujer-de-negocios.jpg" class="img-fluid rounded-circle" width="50%" data-toggle="modal" data-target="#myModal">
-                                </div>
-                                <div class="col-md-6">
-                                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded-circle" width="50%" data-toggle="modal" data-target="#myModal">
-                                </div>
-                            </div>
+                            </div>                           
                         </div>
                     </div>
                     <div class="card cuarta-card">
@@ -253,39 +330,56 @@
                             <div class="container">
                                 <h1 class="mt-1">Calificación Final</h1>
                                 <hr>
-                                <button id="btnRedireccionar" type="button" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Calificación</button>
+                                <a href="{{ url_for('calificaciones_conductor') }}" class="btn btn-outline-primary disabled" id="btnCalificaciones">
+                                    <i class="bi bi-star-half"></i> Calificación
+                                </a>
+                                
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="card cuarta-card mt-4">
+                        <div class="card-body text-center mx-auto">
+                            <div class="container">
+                                <h1>Comentarios</h1>
+                                <hr>
+                                {% if comentarios_admin %}
+                                    <ul>
+                                        {% for comentario in comentarios_admin %}
+                                            <p>{{ comentario[0] }}</p>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    <p>Sin comentarios</p>
+                                {% endif %}
+                                
                             </div>
                         </div>
-                    </div>
+                    </div>             
                 </div>
             </div>  
-        </div>        
-                <!--Modal Info de pasajeros-->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Detalles del Pasajero</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form action="/" method="POST">
-                                <div class="modal-body">
-                                    <p><strong>Nombre:</strong> Nombre</p>
-                                    <p><strong>Apellidos:</strong> Apellidos</p>
-                                    <p><strong>Matrícula:</strong> Matricula</p>
-                                    <p><strong>Carrera:</strong> Carrera</p>
-                                    <p><strong>Género:</strong> Género</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i>Cerrar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div><!--Fin Row-->
-        </div><!--Fin container  -->
+        </div>  
+        <!-- En la vista HomeConductor -->
+        <script>
+            // Función para obtener el valor de la cookie
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
         
+            // Obtén el estado de la cookie
+            const estadoBoton = getCookie("estadoBotonCalificaciones");
+        
+            // Ajusta el estado del botón en consecuencia
+            if (estadoBoton === "habilitado") {
+                $('#btnCalificaciones').removeClass('disabled');
+            } else {
+                $('#btnCalificaciones').addClass('disabled');
+            }
+        </script>
+        
+
+
         <!-- INICIO FOOTER -->
         <footer class="text-center text-white" style="background-color: #0a4275;">
             <div class="container p-4 pb-0"><!-- INICIO CONTAINER -->
@@ -380,38 +474,6 @@
             });
             });
 
-
-            // Script para abrir el primer modal
-            const botonModal1 = document.querySelector('[data-target="#myModalConductor1"]');
-            const modal1 = document.getElementById('myModalConductor1');
-
-            botonModal1.addEventListener('click', () => {
-                const modal = new bootstrap.Modal(modal1);
-                modal.show();
-            });
-
-            // Script para abrir el segundo modal
-            const botonModal2 = document.querySelector('[data-target="#myModalConductor2"]');
-            const modal2 = document.getElementById('myModalConductor2');
-
-            botonModal2.addEventListener('click', () => {
-                const modal = new bootstrap.Modal(modal2);
-                modal.show();
-            });
-        </script><!-- FIN SCRIPT ESTRELLAS -->
-
-        <!-- REDIRECCION DE PAGINA -->
-        <script>
-            // Selecciona el botón por su id
-            const btnRedireccionar = document.getElementById('btnRedireccionar');
-        
-            // Agrega un evento clic al botón
-            btnRedireccionar.addEventListener('click', function() {
-                // Redirige a la página HTML deseada
-                window.location.href = 'Calificacion.html';
-            });
-        </script>
-        
-        
+        </script><!-- FIN SCRIPT ESTRELLAS -->    
     </body><!-- FIN BODY -->
 </html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del Pasajero</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" href="https://i.ibb.co/9Gy1hPQ/CARPOOL.png">
+    <link rel="stylesheet" href="static/styles.css">
+    <script src="static/script.js" defer></script>
+    <script src="static/Script1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.20.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        /* ESTILOS DEL BODY */
+body {
+background-image: url('https://www.liderempresarial.com/wp-content/uploads/2022/05/UPQ.jpg');
+background-size: cover;
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+margin: 0;
+padding: 0;
+font-family: 'Poppins', sans-serif;
+justify-content: space-between;
+}
+
+.modal-content .modal-image {
+width: 150px;
+height: 150px;
+border-radius: 50%;
+object-fit: cover;
+}
+
+/* ESTILOS DEL FOOTER */
+.footer {
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+background-color: #0a4275;
+color: white;
+text-align: center;
+padding: 10px 0;
+}
+
+.footer-container {
+background-color: #0a4275;
+/* Cambio de color */
+color: white;
+text-align: center;
+padding: 10px 0;
+}
+
+footer {
+margin: 0;
+background: transparent;
+}
+
+</style>
+
+</head>
+<body><!-- INICIO BODY -->
+<!-- INICIO NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light navbar-scroll" style="background-color: #072846;">
+<!-- INICIO CONTAINER -->
+<div class="container-fluid">
+<!-- INICIO BUTTON -->
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-bars"></i>
+</button><!-- FIN BUTTON -->
+
+<!-- Navbar brand -->
+<a class="navbar-brand mt-2 mt-lg-0" href="#">
+    <img src="https://calareo.ca/wp-content/uploads/2020/10/UPQ-logo.png" height="65">
+</a>
+<!-- ELEMENTOS A LA IZQUIERDA "HOME" -->
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <li class="nav-item">
+      <a class="nav-link text-white" href="/conductor">Home</a>
+    </li>
+</ul><!-- FIN ELEMENTOS A LA IZQUIERDA -->
+<!-- ELEMENTOS A LA DERECHA -->
+<div class="ml-auto">
+    <!-- Avatar -->
+    <div class="dropdown">
+        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://i.ibb.co/jvrQmyM/CARPOOL-CARDENAL.png" class="rounded-circle" height="60" alt="Avatar Image" loading="lazy"/>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+            <li>
+                <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div><!-- FIN CONTAINER -->
+</nav><!-- FIN NAVBAR -->
+
+<div class="container bg-white p-4 rounded mt-5">
+    <div class="row">
+        <h1 class="text-center mb-4">Información de los Pasajeros</h1>
+        <div class="mb-4 position-absolute top-2">
+            <a href="/conductor" class="btn btn-outline-primary"><i class="bi bi-arrow-return-left"></i> Regresar</a>
+        </div>
+        <hr>
+        {% for pasajero in pasajeros %}
+        <div class="card text-center mb-3 me-5 mx-auto p-2" style="width: 16rem;">
+            <div class="card-body">
+                <img src="/static/archivos/{{ pasajero.1 }}_Foto_Personal.jpg" alt="{{ pasajero.1 }} - Foto de Pasajeros" class="img-fluid mt-3" width="130px">
+                <hr>
+                <p><strong>Nombre:</strong> {{ pasajero.0 }}</p>
+                <p><strong>Matrícula:</strong> {{ pasajero.1 }}</p>
+                <p><strong>Carrera:</strong> {{ pasajero.2 }}</p>
+                <p><strong>Sexo:</strong> {{ pasajero.3 }}</p>
+                <!-- Agrega más detalles del pasajero si es necesario -->
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>  
+</div>
+<br><br><br><br>
+
+</body>
+ <!-- INICIO FOOTER -->
+ <footer class="text-center text-white" style="background-color: #0a4275;">
+    <div class="container p-4 pb-0"><!-- INICIO CONTAINER -->
+        <section class="mb-4"><!-- INICIO SECTION -->
+        <!-- Facebook -->
+        <a class="btn btn-outline-light btn-floating m-1" href="https://es-la.facebook.com/UPQoficial/" role="button"><i class="fab fa-facebook-f"></i></a>
+
+        <!-- Twitter -->
+        <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/UPQoficial" role="button"><i class="fab fa-twitter"></i></a>
+
+        <!-- Google -->
+        <a class="btn btn-outline-light btn-floating m-1" href="https://www.upq.mx/" role="button"><i class="fab fa-google"></i></a>
+
+        <!-- Instagram -->
+        <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/soyupq/" role="button"><i class="fab fa-instagram"></i></a>
+        </section><!-- FIN SECTION -->
+    </div><!-- FIN CONTAINER -->
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:
+    <a class="text-white" href="/">CARPOOL CARDENAL</a>
+    </div><!-- Copyright -->
+</footer><!-- FIN FOOTER -->
+
+<!-- INICIO SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<!-- FIN SCRIPTS -->
+
+</html>

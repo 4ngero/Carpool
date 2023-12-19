@@ -146,43 +146,11 @@
             </div><!-- FIN CONTAINER -->
         </nav><!-- FIN NAVBAR -->
         
-        <!-- MODAL CONTRASEÑA -->
-        <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar Contraseña</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="/cambiar_contraseña" method="POST">
-                        <div class="modal-body">
-                            <div class="row g-3">
-                                <div class="col-md-12">
-                                    <label for="inputPassword" class="form-label">Nueva Contraseña</label>
-                                    <input type="password" class="form-control" id="inputPassword" name="txtPassword" required>
-                                </div>
-                            </div>
-                            <div class="row g-3">
-                                <div class="col-md-12">
-                                    <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
-                                    <input type="password" class="form-control" id="inputConfirmPassword" name="txtConfirmPassword" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Guardar Contraseña</button>
-                            <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
-                        </div>                        
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- FIN DE MODAL CONTRASEÑA -->
         <div class="modal fade" id="perfilModal" tabindex="-1" aria-labelledby="perfilModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="perfilModalLabel">Perfil de Usuario</h5>
+                        <h5 class="modal-title" id="perfilModalLabel">Perfil Pasajero</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -227,13 +195,41 @@
                         <!-- Fin del contenido del perfil -->
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#fotoPersonalModal"><i class="bi bi-phone"></i> Actualizar Foto Personal</button>                        
-                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#telefonoModal"><i class="bi bi-phone"></i> Actualizar Teléfono</button>                        
+                        <button type="button" class="btn btn-outline-primary me-3" data-bs-toggle="modal" data-bs-target="#fotoPersonalModal"><i class="bi bi-person-badge"></i> Actualizar Foto</button>      
+                        <button type="button" class="btn btn-outline-primary me-3" data-bs-toggle="modal" data-bs-target="#telefonoModal"><i class="bi bi-phone"></i> Actualizar Teléfono</button>                        
                         <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        
+    <!--Modal para agregar foto personal-->
+    <div class="modal fade" id="fotoPersonalModal" tabindex="-1" aria-labelledby="fotoPersonalModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Foto Personal</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/actualizar_foto_pasajero" method="POST" autocomplete="off" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="row g-6">
+                            <div class="col-md-12">
+                                <label for="validateCustomFile" class="form-label">Foto Personal</label>
+                                <input class="form-control" type="file" id="formFile" name="fotoPersonal" required>
+                            </div><!--Cierre col-->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-outline-primary"><i class="bi bi-person-add"></i> Agregar Foto</button>
+                        <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
         <!-- MODAL DE ACTUALIZAR TELÉFONO -->
         <div class="modal fade" id="telefonoModal" tabindex="-1" aria-labelledby="telefonoModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -259,32 +255,6 @@
         </div>        
         <!-- FIN MODAL TELÉFONO -->
 
-        <!--Modal para agregar foto personal-->
-        <div class="modal fade" id="fotoPersonalModal" tabindex="-1" aria-labelledby="fotoPersonalModal" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Foto Personal</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="/actualizar_foto_pasajero" method="POST" autocomplete="off" enctype="multipart/form-data">
-                        <div class="modal-body">
-                            <div class="row g-6">
-                                <div class="col-md-12">
-                                    <label for="validateCustomFile" class="form-label">Foto Personal</label>
-                                    <input class="form-control" type="file" id="formFile" name="fotoPersonal" required>
-                                </div><!--Cierre col-->
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-outline-primary"><i class="bi bi-person-add"></i> Agregar Foto</button>
-                            <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
         <!-- CONTENIDO EN LA PÁG PRINCIPAL -->
         <div class="container py-5">
             <div class="row">
@@ -296,7 +266,7 @@
                     <div class="row">
                         <div class="card primera-card">
                             <div class="card-body text-center">
-                                {#%for ruta in rutas%#}
+                                {%for ruta in rutas%}
                                 <h1>Detalles de Ruta</h1>
                                 <hr>
                                 <div>
@@ -328,7 +298,7 @@
                                     {%endfor%}
                                     
                                 </table>
-                                {#%endfor%#}
+                                {%endfor%}
                             </div>
                         </div>
                     </div>
@@ -338,39 +308,64 @@
                     <div class="row ">
                         <div class="card primera-card">
                             <div class="card-body text-center">
-                                <h1>Registrar nueva ruta</h1>
+                                <h1>Registrar Nueva Ruta</h1>
                                 <hr>
                                 <div>
-                                    <a href="pasajero/ruta"><button type="button" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Registrar Ruta</button></a>
+                                    <a href="pasajero/ruta"><button type="button" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i> Registrar Ruta</button></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Columna derecha para Card 2, 3 y 4 -->
-                <div class="col-md-5 ms-auto py-4">
-                    <!--Card 2-->
-                    <div class="card segunda-card mb-4">
-                        <div class="card-body text-center mx-auto">
-                            <!-- Agregar las imágenes redondeadas -->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h3>Conductor</h3>
-                                    <img src="https://th.bing.com/th/id/OIP.4ExqsKhmdKnjieXagyEolwHaHa?pid=ImgDet&rs=1" class="img-fluid rounded-circle" width="50%" data-toggle="modal" data-target="#myModal">
-                                </div>
-                                <div class="col-md-6">
-                                    <h3>Automovil</h3>
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPWSlyst0op2W9vn_1BHBmdeOo0ErXXDg3q4acLSAfLP77s3_7hI5lhf_5sqOoD2ndPRo&usqp=CAU" class="img-fluid rounded-circle" width="50%" data-bs-toggle="modal" data-bs-target="#exampleModal8">
+                <div class="col-md-5 ms-auto">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card" style="width: 33rem;">
+                                <div class="card-body">
+                                    <h1 class="mt-1 text-center">Información</h1>
+                                    <hr>
+                                    <div class="text-center">
+                                        <form action="{{ url_for('sol_aceptada') }}">
+                                            <button type="submit" class="btn btn-outline-primary">
+                                                <i class="bi bi-person-workspace"></i> Ver Información del Conductor
+                                            </button>
+                                        </form>
+                                    </div>
+                                    
+                                                                                                     
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-5 ms-auto mt-3">
                     <div class="card cuarta-card">
                         <div class="card-body text-center mx-auto">
                             <div class="container">
                                 <h1 class="mt-1">Calificación Final</h1>
                                 <hr>
-                                <button id="btnRedireccionar" type="button" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Calificación</button>
+                                <a href="{{ url_for('calificaciones_pasajero') }}" class="btn btn-outline-primary disabled" id="btnCalificacionesPas">
+                                    <i class="bi bi-star-half"></i> Calificación
+                                </a>
+                                
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="card cuarta-card mt-4">
+                        <div class="card-body text-center mx-auto">
+                            <div class="container">
+                                <h1>Comentarios</h1>
+                                <hr>
+                                {% if comentarios_admin1 %}
+                                    <ul>
+                                        {% for comentario in comentarios_admin1 %}
+                                            <p>{{ comentario[0] }}</p>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    <p>Sin comentarios</p>
+                                {% endif %}
+                                
                             </div>
                         </div>
                     </div>
@@ -378,66 +373,28 @@
             </div>
         </div>
         
-        <!--Modal info del conductor-->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Detalles del Conductor</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="/" method="POST">
-                        <div class="modal-body">
-                            <p><strong>Nombre:</strong> 
-                                {%for i in nombre2%}
-                                {{i}}
-                                {%endfor%}
-                            </p>
-                            <p><strong>Apellidos:</strong>
-                                {%for i in apellidos%}
-                                {{i}}
-                                {%endfor%}
-                            </p>
-                            <p><strong>Matrícula:</strong> {{datos2.0}}</p>
-                            <p><strong>Carrera:</strong> {{datos2.3}}</p>
-                            <p><strong>Género:</strong> {{datos2.4}}</p>
-                            {#<p><strong>Teléfono:</strong> {{telefono2.0}}</p>#}
-                        </div>
-                        <div class="modal-footer">
-                            <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+  <!-- En la vista HomeConductor -->
+  <script>
+    // Función para obtener el valor de la cookie
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
 
-        <!--Inicio modal datos de automovil-->
-        <div class="modal fade" id="exampleModal8" tabindex="-1" aria-labelledby="exampleModalLabel aria-hidden=true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Detalles del Auto</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="/" method="POST">
-                            <div class="modal-body">
-                                {%for auto in autos%}
-                                <p><strong>Marca:</strong> {{auto.2}}</p>
-                                <p><strong>Modelo:</strong> {{auto.1}}</p>
-                                <p><strong>No.Placas:</strong> {{auto.0}}</p>
-                                {%endfor%}
-                            </div>
-                            <div class="modal-footer">
-                                <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+    // Obtén el estado de la cookie
+    const estadoBoton = getCookie("estadoBotonCalificaciones");
 
+    // Ajusta el estado del botón en consecuencia
+    if (estadoBoton === "habilitado") {
+        $('#btnCalificacionesPas').removeClass('disabled');
+    } else {
+        $('#btnCalificacionesPas').addClass('disabled');
+    }
+</script>
+
+
+     
         <!-- INICIO FOOTER -->
         <footer class="text-center text-white" style="background-color: #0a4275;">
             <div class="container p-4 pb-0"><!-- INICIO CONTAINER -->
