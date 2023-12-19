@@ -15,7 +15,7 @@ app= Flask(__name__,  template_folder='Templates')
 app.config['MYSQL_USER']='web-carpool' #De la esuela descomentar
 #app.config['MYSQL_USER']='root' #Tuyo Comentar antes de subir
 app.config['MYSQL_PASSWORD']='wS314762UU' #De la esuela descomentar
-#app.config['MYSQL_PASSWORD']='cz757002' #Tuyo Comentar antes de subir
+#app.config['MYSQL_PASSWORD']='' #Tuyo Comentar antes de subir
 app.config['MYSQL_DB']='carpool'
 app.secret_key= 'mysecretkey'
 mysql= MySQL(app)
